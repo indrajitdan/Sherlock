@@ -1,0 +1,47 @@
+<md-dialog id="logind" aria-label="Log In" clickoutsidetoclose="false">
+    <md-toolbar class="md-primary">
+        <h1 class="md-toolbar-tools">
+            <md-icon md-svg-icon="kelock" style="width: 40px; height: 40px;"></md-icon>
+        </h1>
+    </md-toolbar>
+    <br />
+    <md-subheader class="md-primary">Provide your credentials</md-subheader>
+    <br />
+    <md-content layout-padding md-scroll-y>
+
+        <form name="userForm">
+            <md-input-container md-no-float>
+                <md-icon md-svg-icon="loguser" class="name"></md-icon>
+                <input ng-model="dlgctrl.user.uid" name="uid" type="text" placeholder="User Name" required>
+
+                <div ng-show="nouid || userForm.uid.$touched" ng-messages="userForm.uid.$error">
+
+                    <div ng-message="required">Please provide user id</div>
+
+                </div>
+
+            </md-input-container>
+            <md-input-container md-no-float>
+                <md-icon md-svg-icon="passkey" class="passwrd"></md-icon>
+                <input ng-model="dlgctrl.user.upwd" name="upwd" type="password" placeholder="Password" required>
+
+                <div ng-show="nopwd || userForm.upwd.$touched" ng-messages="userForm.upwd.$error">
+
+                    <div ng-message="required">Please provide password</div>
+
+                </div>
+            </md-input-container>
+
+        </form>
+
+
+        <div ng-show="dlgctrl.loginFailureMsg ">
+            <pre> <p class="md-warn"> User Id and Password do not match! </p></pre>
+        </div>
+    </md-content>
+    <div class="md-actions" layout="row" layout-align="center start">
+        <md-button class="md-raised md-primary" aria-label="Log In" flex="20" type="submit" ng-click="dlgctrl.checkLogin()">
+            <md-icon md-svg-icon="unlock" style="color: #f5f5f5; width: 32px; height: 32px;"></md-icon>
+        </md-button>
+    </div>
+</md-dialog>

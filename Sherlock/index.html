@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1" />
+    <title>Sherlock</title>  
+
+    <link rel="stylesheet" href="lib/angular-material/angular-material.css">
+
+    <!--<link rel="stylesheet" href="scripts/custom.min.css">-->
+    <link rel="stylesheet" href="mcss/custom.css">
+
+    <script src="lib/d3/d3.js"></script>
+
+    <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular-animate/angular-animate.js"></script>
+    <script src="lib/angular-aria/angular-aria.js"></script>
+    <script src="lib/angular-messages/angular-messages.js"></script>
+    <script src="lib/angular-resource/angular-resource.js"></script>
+    <script src="lib/angular-animate/angular-animate.js"></script>
+    <script src="lib/angular-sanitize/angular-sanitize.js"></script>
+    <script src="lib/ui-router/angular-ui-router.js"></script>
+    <script src="lib/ng-csv/src/ng-csv/ng-csv.js"></script>
+
+    <script src="lib/angular-material/angular-material.js"></script>
+    <script src="lib/angular-local-storage/angular-local-storage.js"></script>
+
+    <!--<script src="scripts/app_prod.js"></script>-->
+    <script src="mjs/SherlockCtrl.js"></script>
+
+</head>
+<body layout="row" ng-app="SherlockApp" ng-controller="SherlockCtrl as shCtrl" ng-init="shCtrl.startInitialFns()">
+    <md-sidenav class="site-sidenav md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
+        <md-toolbar class="md-theme-indigo">
+            <a ui-sref="home" style="color:white;text-decoration:none;"><h1 class="md-toolbar-tools">Sherlock</h1></a>
+        </md-toolbar>
+        <md-content layout-padding>
+            <p hide-md show-gt-md>
+                <a ui-sref="home">Dashboard</a>
+            </p>
+            <p hide-md show-gt-md>
+                <a ui-sref="suppressions">Suppression List</a>
+            </p>
+        </md-content>
+    </md-sidenav>
+    <div layout="column" tabindex="-1" role="main" flex>
+        <md-toolbar class="md-default-theme">
+            <div class="md-toolbar-tools docs-toolbar-tools" tabindex="-1">
+                <md-button class="md-icon-button" hide-gt-sm aria-label="Toggle Menu" ng-click="shCtrl.toggleLeft()">
+                    <md-icon md-svg-icon="menuitem"></md-icon>
+                </md-button>
+                <div layout="row" flex class="fill-height">
+                    <label ng-show="shCtrl.insuppression">Suppression List </label>
+                    <span flex></span>
+                    <div class="md-toolbar-item docs-tools" layout="row" layout-align="center center">
+                        <div ng-include src="shCtrl.templateUrlToolbar"></div>
+                    </div>
+                </div>
+            </div>
+        </md-toolbar>
+        <md-content md-scroll-y flex layout-padding>
+            <div layout="column" layout-fill layout-align="top center">
+                <div ui-view></div>
+            </div>
+            <div flex></div>
+        </md-content>
+    </div>
+</body>
+</html>

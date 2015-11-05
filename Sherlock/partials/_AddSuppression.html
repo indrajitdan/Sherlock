@@ -1,0 +1,117 @@
+﻿<div layout="column" layout-sm="column">
+    <md-content layout-padding>
+        <div layout layout-sm="column">
+            <div flex-gt-sm="15" hide-sm>
+            </div>
+            <md-input-container flex-gt-sm="40">
+                <h2>Add details of suppression</h2>
+            </md-input-container>
+        </div>
+        <form name="suppressionForm" novalidate>
+            <div layout layout-sm="column">
+                <div flex-gt-sm="15" hide-sm>
+                </div>
+                <md-input-container flex="30">
+                    <md-icon md-svg-icon="loguser" class="name"></md-icon>
+                    <input ng-model="slist.firstName" name="firstName" type="text" placeholder="First Name (required)" required>
+                    <div ng-show="nouid || suppressionForm.firstName.$touched" ng-messages="suppressionForm.firstName.$error">
+                        <div ng-message="required">Please provide a name</div>
+                    </div>
+                </md-input-container>
+                <md-input-container flex="30">
+                    <md-icon md-svg-icon="loguser" class="name"></md-icon>
+                    <input ng-model="slist.lastName" name="lastName" type="text" placeholder="Last Name">
+                </md-input-container>
+            </div>
+            <div layout layout-sm="column">
+                <div flex-gt-sm="15" hide-sm>
+                </div>
+                <md-input-container flex="30">
+                    <md-icon md-svg-icon="emailmsg" class="md-contact-email"></md-icon>
+                    <input ng-model="slist.emailid" name="uemail" type="email" placeholder="Email Id">
+                </md-input-container>
+                <md-input-container flex="30">
+                    <md-icon md-svg-icon="smartphone"></md-icon>
+                    <input ng-model="slist.phoneNumber" name="phoneNumber" type="text" placeholder="Phone">
+                    <!--<div ng-show="nouid || suppressionForm.phoneNumber.$touched" ng-messages="suppressionForm.phoneNumber.$error">
+                        <div ng-message="required">Please provide a phone number</div>
+                    </div>-->
+                </md-input-container>
+            </div>
+            <div layout layout-sm="column">
+                <div flex-gt-sm="15" hide-sm>
+                </div>
+                <md-input-container flex="30">
+                    <md-icon md-svg-icon="zipcode"></md-icon>
+                    <input ng-model="slist.zipcode" name="zipcode" type="text" placeholder="Post Code">
+                </md-input-container>
+                <md-input-container flex="30">
+                    <md-icon md-svg-icon="networkip"></md-icon>
+                    <input ng-model="slist.ipaddr" name="zipcode" type="text" placeholder="IP Address">
+                </md-input-container>
+            </div>
+            <div layout layout-sm="column">
+                <div flex-gt-sm="15" hide-sm>
+                </div>
+                <fieldset class="standard">
+                    <legend>Block Services</legend>
+                    <div layout="row" layout-wrap>
+                        <div layout="column">
+                            <md-checkbox ng-model="slist.callBlock" ng-init="slist.callBlock=true" aria-label="Block Call" class="md-primary">
+                                Call
+                            </md-checkbox>
+                            <md-checkbox ng-model="slist.smsBlock" ng-init="slist.smsBlock=true" aria-label="Block SMS" class="md-primary">
+                                SMS
+                            </md-checkbox>
+                        </div>
+                        <div layout="column">
+                            <md-checkbox ng-model="slist.emailBlock" ng-init="slist.emailBlock=true" aria-label="Block Email" class="md-primary">
+                                Email
+                            </md-checkbox>
+                            <md-checkbox ng-model="slist.pushNotifyBlock" ng-disabled="true" ng-init="slist.pushNotifyBlock=true" aria-label="Block Push Notify">
+                                Push Notification
+                            </md-checkbox>
+                        </div>
+                    </div>
+                </fieldset>
+                <div flex-gt-sm="15" hide-sm>
+                </div>
+                <div layout="column" layout-sm="column">
+                    <md-select ng-model="slist.productname" placeholder="Product Name">
+                        <md-option value="Loan">Loan</md-option>
+                        <md-option value="Mortgage">Mortgage</md-option>
+                    </md-select>
+                    <md-select ng-model="slist.sitename" placeholder="Site Name">
+                        <md-option value="Mortgage.co.uk">Mortgage.co.uk</md-option>
+                        <md-option value="Loan.co.uk">Loan.co.uk</md-option>
+                    </md-select>
+                </div>
+            </div>
+            <div layout layout-sm="column">
+                <div flex-gt-sm="15" hide-sm>
+                </div>
+                <md-input-container flex="45">
+                    <input ng-model="slist.complainDate" name="compDate" type="date" placeholder="Complain Date">
+                </md-input-container>
+            </div>
+            <div layout layout-sm="column">
+                <div flex-gt-sm="15" hide-sm>
+                </div>
+                <md-input-container flex="60">
+                    <label>Complain Message</label>
+                    <textarea ng-model="slist.complainmsg" columns="1" md-maxlength="600"></textarea>
+                </md-input-container>
+            </div>
+        </form>
+        <div layout layout-sm="column">
+            <div flex-gt-sm="30" hide-sm>
+            </div>
+            <md-button class="md-raised md-warn md-hue-1" aria-label="Log In" flex="20" ng-click="supCtrl.cancelSuppression()">
+                Cancel
+            </md-button>
+            <md-button class="md-raised md-primary" aria-label="Log In" flex="20" type="submit" ng-disabled="suppressionForm.$invalid" ng-click="supCtrl.addSuppression(slist)">
+                Add
+            </md-button>
+        </div>
+    </md-content>
+</div>

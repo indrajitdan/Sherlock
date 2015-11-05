@@ -1,0 +1,66 @@
+﻿<div ng-init="supCtrl.initialFns()">
+    <input type="search" ng-model="q" placeholder="filter with any value..." aria-label="filter list" style="width: 300px; height: 30px; padding-left: 40px;" />
+    <br /><br />
+    <md-list-item class="md-3-line" ng-repeat="item in supCtrl.allrecords | filter:q as results">
+        <md-icon md-svg-icon="blocklist"></md-icon>
+        <div class="md-list-item-text">
+            <h3> {{ item.firstName }} {{item.lastName}} </h3>
+            <h5> Phone - {{ item.phoneNumber }} </h5>
+            <h5> Email - {{ item.emailId }} </h5>
+            <h5> Post Code - {{ item.zipCode }} </h5>
+            <input class="toggle-box" id="header1{{+$index}}" type="checkbox">
+            <label for="header1{{+$index}}">More details!</label>
+            <div>
+                <fieldset class="standard">
+                    <legend>Block Services</legend>
+                    <div layout="row" layout-wrap>
+                        <div layout="column">
+                            <md-checkbox ng-model="item.callBlock" ng-disabled="true" aria-label="Block Call">
+                                Call
+                            </md-checkbox>
+                            <md-checkbox ng-model="item.smsBlock" ng-disabled="true" aria-label="Block SMS">
+                                SMS
+                            </md-checkbox>
+                        </div>
+                        <div layout="column">
+                            <md-checkbox ng-model="item.emailBlock" ng-disabled="true" aria-label="Block Email">
+                                Email
+                            </md-checkbox>
+                            <md-checkbox ng-model="item.pushNotifyBlock" ng-disabled="true" aria-label="Block Push Notify">
+                                Push Notification
+                            </md-checkbox>
+                        </div>
+                    </div>
+                </fieldset>
+                <h5> Product - {{ item.productName }} </h5>
+                <h5> Site - {{ item.siteName }} </h5>
+                <h5> Complain Date - {{ item.complainDate }} </h5>
+                <h5> Complain Message - {{ item.complainMsg }} </h5>
+            </div>
+        </div>
+    </md-list-item>
+    <br />
+    <br />
+
+    <div class="lock-size" layout="row" layout-align="end end">
+        <md-fab-speed-dial md-open="false" md-direction="left" class="md-primary md-fab md-fab-bottom-right" ng-class="md-scale">
+            <md-fab-trigger>
+                <md-button aria-label="menu" class="md-fab md-primary">
+                    <md-icon md-svg-icon="moreshow"></md-icon>
+                </md-button>
+            </md-fab-trigger>
+            <md-fab-actions>
+                <md-button aria-label="add" class="md-fab md-raised md-mini" ng-click="supCtrl.addNew()">
+                    <md-icon md-svg-icon="useradd" style="fill:blue;"></md-icon>
+                </md-button>
+                <md-button aria-label="refresh" class="md-fab md-raised md-mini" ng-click="supCtrl.refreshList()">
+                    <md-icon md-svg-icon="refresh" style="fill:blue;"></md-icon>
+                </md-button>
+            </md-fab-actions>
+        </md-fab-speed-dial>
+    </div>
+    <button class="btn btn-default"
+            ng-csv="supCtrl.allrecords" filename="suprsn.csv" csv-header="supCtrl.getHeader()"  field-separator="," decimal-separator=".">
+        Export to CSV
+    </button>
+</div>

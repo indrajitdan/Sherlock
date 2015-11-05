@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5abc2b47d7ee43ebaac6e01c7c472afe" Name="Diagram1">
+        <EntityTypeShape EntityType="sherlockModel.t_asu_lead" Width="1.5" PointX="5.25" PointY="24.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="sherlockModel.t_authentication_token" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="sherlockModel.t_buyer_master" Width="1.5" PointX="0.75" PointY="35.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="sherlockModel.t_buyer_product" Width="1.5" PointX="3" PointY="39" IsExpanded="true" />
+        <EntityTypeShape EntityType="sherlockModel.t_buyer_product_criteria" Width="1.5" PointX="3" PointY="36" IsExpanded="true" />
+        <EntityTypeShape EntityType="sherlockModel.t_buyer_product_face" Width="1.5" PointX="3" PointY="21.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="sherlockModel.t_common_lead_log" Width="1.5" PointX="8.25" PointY="48.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sherlockModel.t_common_leads" Width="1.5" PointX="3" PointY="45.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sherlockModel.t_debt_lead" Width="1.5" PointX="5.25" PointY="31.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sherlockModel.t_equityrelease_lead" Width="1.5" PointX="5.25" PointY="35.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="sherlockModel.t_ipi_lead" Width="1.5" PointX="5.25" PointY="38.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sherlockModel.t_life_lead" Width="1.5" PointX="5.25" PointY="42.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="sherlockModel.t_loan_lead" Width="1.5" PointX="5.25" PointY="47.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="sherlockModel.t_logbookloan_lead" Width="1.5" PointX="5.25" PointY="54.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sherlockModel.t_mortgage_lead" Width="1.5" PointX="5.25" PointY="59.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="sherlockModel.t_mortgage_lead_log" Width="1.5" PointX="8.25" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="sherlockModel.t_pmi_lead" Width="1.5" PointX="5.25" PointY="65.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sherlockModel.t_postcode" Width="1.5" PointX="5.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="sherlockModel.t_ppi_lead" Width="1.5" PointX="5.25" PointY="68.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="sherlockModel.t_product_master" Width="1.5" PointX="0.75" PointY="39.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="sherlockModel.t_product_website" Width="1.5" PointX="8.25" PointY="44.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="sherlockModel.t_role_master" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="sherlockModel.t_sme_mi_lead" Width="1.5" PointX="5.25" PointY="75.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sherlockModel.t_solar_lead" Width="1.5" PointX="5.25" PointY="78.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="sherlockModel.t_stage_master" Width="1.5" PointX="6" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sherlockModel.t_status_type_master" Width="1.5" PointX="6" PointY="81.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sherlockModel.t_transfer_log" Width="1.5" PointX="8.25" PointY="52.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sherlockModel.t_user_master" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="sherlockModel.t_user_role" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="sherlockModel.t_website_master" Width="1.5" PointX="6" PointY="20.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="sherlockModel.t_hoax" Width="1.5" PointX="2.75" PointY="7" IsExpanded="true" />
+        <AssociationConnector Association="sherlockModel.FK_t_asu_lead_t_common_leads" ManuallyRouted="false" />
+        <AssociationConnector Association="sherlockModel.FK_t_authentication_token_t_user_master" ManuallyRouted="false" />
+        <AssociationConnector Association="sherlockModel.FK_t_buyer_product_criteria_t_buyer_product" ManuallyRouted="false" />
+        <AssociationConnector Association="sherlockModel.FK_t_buyer_product_t_buyer_master" ManuallyRouted="false" />
+        <AssociationConnector Association="sherlockModel.FK_t_transfer_log_t_buyer_master" ManuallyRouted="false" />
+        <AssociationConnector Association="sherlockModel.FK_t_buyer_product_t_product_master" ManuallyRouted="false" />
+        <AssociationConnector Association="sherlockModel.FK_t_buyer_product_criteria_t_product_master" ManuallyRouted="false" />
+        <AssociationConnector Association="sherlockModel.FK_t_buyer_product_face_t_product_master" ManuallyRouted="false" />
+        <AssociationConnector Association="sherlockModel.FK_t_common_lead_log_t_common_leads" ManuallyRouted="false" />
+        <AssociationConnector Association="sherlockModel.FK_t_common_lead_log_t_stage_master" ManuallyRouted="false" />
+        <AssociationConnector Association="sherlockModel.FK_t_common_leads_t_product_master" ManuallyRouted="false" />
+        <AssociationConnector Association="sherlockModel.FK_t_debt_lead_t_common_leads" ManuallyRouted="false" />
+        <AssociationConnector Association="sherlockModel.FK_t_equityrelease_lead_t_common_leads" ManuallyRouted="false" />
+        <AssociationConnector Association="sherlockModel.FK_t_ipi_lead_t_common_leads" ManuallyRouted="false" />
+        <AssociationConnector Association="sherlockModel.FK_t_life_lead_t_common_leads" ManuallyRouted="false" />
+        <AssociationConnector Association="sherlockModel.FK_t_loan_lead_t_common_leads" ManuallyRouted="false" />
+        <AssociationConnector Association="sherlockModel.FK_t_logbookloan_lead_t_common_leads" ManuallyRouted="false" />
+        <AssociationConnector Association="sherlockModel.FK_t_mortgage_lead_t_common_leads" ManuallyRouted="false" />
+        <AssociationConnector Association="sherlockModel.FK_t_pmi_lead_t_common_leads" ManuallyRouted="false" />
+        <AssociationConnector Association="sherlockModel.FK_t_ppi_lead_t_common_leads" ManuallyRouted="false" />
+        <AssociationConnector Association="sherlockModel.FK_t_product_website_t_common_leads" ManuallyRouted="false" />
+        <AssociationConnector Association="sherlockModel.FK_t_sme_mi_lead_t_common_leads" ManuallyRouted="false" />
+        <AssociationConnector Association="sherlockModel.FK_t_solar_lead_t_common_leads" ManuallyRouted="false" />
+        <AssociationConnector Association="sherlockModel.FK_t_transfer_log_t_common_leads" ManuallyRouted="false" />
+        <AssociationConnector Association="sherlockModel.FK_Table_1_t_stage_master" ManuallyRouted="false" />
+        <AssociationConnector Association="sherlockModel.FK_t_product_website_t_product_master" ManuallyRouted="false" />
+        <AssociationConnector Association="sherlockModel.FK_t_product_website_t_website_master" ManuallyRouted="false" />
+        <AssociationConnector Association="sherlockModel.FK_t_user_role_t_role_master" ManuallyRouted="false" />
+        <AssociationConnector Association="sherlockModel.FK_t_transfer_log_t_status_type_master" ManuallyRouted="false" />
+        <AssociationConnector Association="sherlockModel.FK_t_user_role_t_user_master" ManuallyRouted="false" />
+        <AssociationConnector Association="sherlockModel.FK_t_website_master_t_website_master" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

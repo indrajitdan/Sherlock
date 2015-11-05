@@ -1,0 +1,2435 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="sherlockModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="t_asu_lead">
+          <Key>
+            <PropertyRef Name="asu_lead_id" />
+          </Key>
+          <Property Name="asu_lead_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="lead_id" Type="int" Nullable="false" />
+          <Property Name="date_of_birth" Type="datetime" Nullable="false" />
+          <Property Name="age" Type="int" Nullable="false" />
+          <Property Name="employment_status" Type="int" Nullable="false" />
+          <Property Name="period" Type="int" Nullable="false" />
+          <Property Name="amount" Type="int" Nullable="false" />
+          <Property Name="smoker" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="cover_type" Type="int" Nullable="false" />
+          <Property Name="product_type" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="t_authentication_token">
+          <Key>
+            <PropertyRef Name="token_id" />
+          </Key>
+          <Property Name="token_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="auth_token" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="issues_on" Type="datetime" Nullable="false" />
+          <Property Name="expires_on" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="t_buyer_master">
+          <Key>
+            <PropertyRef Name="buyer_id" />
+          </Key>
+          <Property Name="buyer_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="buyer_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="buyer_address" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="buyer_pincode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="buyer_poc_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="buyer_contact_number" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="buyer_poc_contact_number" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="buyer_type" Type="varchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="t_buyer_product">
+          <Key>
+            <PropertyRef Name="buyer_product_id" />
+          </Key>
+          <Property Name="buyer_product_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="buyer_id" Type="int" Nullable="false" />
+          <Property Name="product_id" Type="int" Nullable="false" />
+          <Property Name="integration_type" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="buyer_quota" Type="int" Nullable="false" />
+          <Property Name="buyer_priority" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="start_date" Type="datetime" Nullable="false" />
+          <Property Name="end_date" Type="datetime" Nullable="false" />
+          <Property Name="buyer_status" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="buyer_payment_mode" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="prepaid_order_amount" Type="nvarchar" MaxLength="18" Nullable="false" />
+          <Property Name="product_price" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="remaining_amount" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="t_buyer_product_criteria">
+          <Key>
+            <PropertyRef Name="buyer_product_criteria_id" />
+          </Key>
+          <Property Name="buyer_product_criteria_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="product_id" Type="int" Nullable="false" />
+          <Property Name="buyer_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="t_buyer_product_face">
+          <Key>
+            <PropertyRef Name="buyer_product_face_id" />
+          </Key>
+          <Property Name="buyer_product_face_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="product_id" Type="int" Nullable="false" />
+          <Property Name="product_column_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="expected_column_name" Type="varchar" MaxLength="50" />
+          <Property Name="excluded" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="t_common_lead_log">
+          <Key>
+            <PropertyRef Name="log_id" />
+          </Key>
+          <Property Name="log_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="lead_id" Type="int" Nullable="false" />
+          <Property Name="stage_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="t_common_leads">
+          <Key>
+            <PropertyRef Name="lead_id" />
+          </Key>
+          <Property Name="lead_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="first_name" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="last_name" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="city" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="postcode" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Home_Mobile_Phone1" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Home_Mobile_Phone2" Type="varchar" MaxLength="15" />
+          <Property Name="address" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="product_id" Type="int" Nullable="false" />
+          <Property Name="ip_address" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="source" Type="varchar" MaxLength="50" />
+          <Property Name="match_type" Type="varchar" MaxLength="50" />
+          <Property Name="keyword" Type="varchar" MaxLength="50" />
+          <Property Name="lead_status" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="cretaed_on" Type="datetime" Nullable="false" />
+          <Property Name="created_by" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="updated_on" Type="datetime" />
+          <Property Name="updtaed_by" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="t_debt_lead">
+          <Key>
+            <PropertyRef Name="debt_lead_id" />
+          </Key>
+          <Property Name="debt_lead_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="lead_id" Type="int" Nullable="false" />
+          <Property Name="date_of_birth" Type="datetime" Nullable="false" />
+          <Property Name="age" Type="int" Nullable="false" />
+          <Property Name="employement_status" Type="int" Nullable="false" />
+          <Property Name="resinedtial_location" Type="int" Nullable="false" />
+          <Property Name="total_creditors" Type="int" Nullable="false" />
+          <Property Name="debt_type" Type="int" />
+          <Property Name="total_unsecured_debt" Type="int" Nullable="false" />
+          <Property Name="monthly_repayment" Type="int" Nullable="false" />
+          <Property Name="monthly_income" Type="int" />
+          <Property Name="monthly_disposable" Type="int" />
+          <Property Name="debt_residential_status_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="t_equityrelease_lead">
+          <Key>
+            <PropertyRef Name="equityrelease_lead_id" />
+          </Key>
+          <Property Name="equityrelease_lead_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="lead_id" Type="int" Nullable="false" />
+          <Property Name="date_of_birth" Type="datetime" Nullable="false" />
+          <Property Name="age" Type="int" Nullable="false" />
+          <Property Name="property_value" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="mortgage_balance" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'sherlock.dbo.t_hoax' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="t_hoax">
+          <Key>
+            <PropertyRef Name="Hoax_Name" />
+            <PropertyRef Name="Hoax_City" />
+            <PropertyRef Name="Hoax_Email" />
+            <PropertyRef Name="hoax_Contactno" />
+            <PropertyRef Name="Hoax_Postcode" />
+          </Key>
+          <Property Name="Hoax_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Hoax_City" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Hoax_Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="hoax_Contactno" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Hoax_Postcode" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="t_ipi_lead">
+          <Key>
+            <PropertyRef Name="ipi_lead_id" />
+          </Key>
+          <Property Name="ipi_lead_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Lead_id" Type="int" Nullable="false" />
+          <Property Name="date_of_birth" Type="datetime" Nullable="false" />
+          <Property Name="age" Type="int" Nullable="false" />
+          <Property Name="employment_status" Type="int" Nullable="false" />
+          <Property Name="cover_type" Type="int" Nullable="false" />
+          <Property Name="amount" Type="int" Nullable="false" />
+          <Property Name="product_type" Type="int" Nullable="false" />
+          <Property Name="period" Type="int" Nullable="false" />
+          <Property Name="smoker" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="t_life_lead">
+          <Key>
+            <PropertyRef Name="life_lead_id" />
+          </Key>
+          <Property Name="life_lead_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="lead_id" Type="int" Nullable="false" />
+          <Property Name="date_of_birth" Type="datetime" Nullable="false" />
+          <Property Name="insurance_type_id" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="premium_type_id" Type="int" Nullable="false" />
+          <Property Name="age" Type="int" Nullable="false" />
+          <Property Name="period" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="amount" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="smoker" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="partner_first_name" Type="varchar" MaxLength="50" />
+          <Property Name="partner_last_name" Type="varchar" MaxLength="50" />
+          <Property Name="partner_smoker" Type="varchar" MaxLength="50" />
+          <Property Name="partner_dob" Type="datetime" />
+          <Property Name="single_ownership" Type="varchar" MaxLength="50" />
+          <Property Name="critical_illness" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="t_loan_lead">
+          <Key>
+            <PropertyRef Name="loan_lead_id" />
+          </Key>
+          <Property Name="loan_lead_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="lead_id" Type="int" Nullable="false" />
+          <Property Name="date_of_birth" Type="datetime" Nullable="false" />
+          <Property Name="age" Type="int" Nullable="false" />
+          <Property Name="employment_status" Type="int" Nullable="false" />
+          <Property Name="period" Type="int" Nullable="false" />
+          <Property Name="property_value" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="loan_value" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="loan_type" Type="int" />
+          <Property Name="loan_purpose_id" Type="int" Nullable="false" />
+          <Property Name="home_owner" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="mortgage_balance" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="query_string" Type="varchar" MaxLength="50" />
+          <Property Name="marital_status" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="country_of_residance" Type="int" Nullable="false" />
+          <Property Name="annual_income" Type="int" Nullable="false" />
+          <Property Name="credit_rating" Type="int" Nullable="false" />
+          <Property Name="loan_guarantor" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="been_in_debt" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="total_creditor" Type="int" />
+          <Property Name="address_start_date" Type="datetime" Nullable="false" />
+          <Property Name="occupation" Type="varchar" MaxLength="50" />
+          <Property Name="employer_name" Type="varchar" MaxLength="50" />
+          <Property Name="employer_since" Type="datetime" />
+          <Property Name="previous_address" Type="varchar" MaxLength="50" />
+          <Property Name="previous_city" Type="varchar" MaxLength="50" />
+          <Property Name="previous_postcode" Type="nvarchar" MaxLength="50" />
+          <Property Name="previous_address_since" Type="datetime" />
+        </EntityType>
+        <EntityType Name="t_logbookloan_lead">
+          <Key>
+            <PropertyRef Name="logbookloan_lead_id" />
+          </Key>
+          <Property Name="logbookloan_lead_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="lead_id" Type="int" Nullable="false" />
+          <Property Name="date_of_birth" Type="datetime" Nullable="false" />
+          <Property Name="age" Type="int" Nullable="false" />
+          <Property Name="country_of_residence" Type="int" Nullable="false" />
+          <Property Name="car_make" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="car_model" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="car_registration_year" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="number_plate" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="current_mileage" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="clear_of_finance" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="contact_time" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="loan_value" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="t_mortgage_lead">
+          <Key>
+            <PropertyRef Name="mortgage_lead_id" />
+          </Key>
+          <Property Name="mortgage_lead_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="lead_id" Type="int" Nullable="false" />
+          <Property Name="date_of_birth" Type="datetime" Nullable="false" />
+          <Property Name="age" Type="int" Nullable="false" />
+          <Property Name="employment_status" Type="int" Nullable="false" />
+          <Property Name="period_term" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="property_value" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="loan_value" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="mortgage_type" Type="int" Nullable="false" />
+          <Property Name="current_debt" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="property_type" Type="int" Nullable="false" />
+          <Property Name="property_location" Type="int" Nullable="false" />
+          <Property Name="credit_history" Type="int" Nullable="false" />
+          <Property Name="annual_income" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="miss_any_loan" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="had_bankruptcy" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="applied_iva" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="had_ccj" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="rate_id" Type="int" Nullable="false" />
+          <Property Name="repayment_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="t_mortgage_lead_log">
+          <Key>
+            <PropertyRef Name="mortgage_log_id" />
+          </Key>
+          <Property Name="mortgage_log_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="mortgage_lead_id" Type="int" Nullable="false" />
+          <Property Name="stage_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="t_pmi_lead">
+          <Key>
+            <PropertyRef Name="pmi_lead_id" />
+          </Key>
+          <Property Name="pmi_lead_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="lead_id" Type="int" Nullable="false" />
+          <Property Name="date_of_birth" Type="datetime" Nullable="false" />
+          <Property Name="age" Type="int" Nullable="false" />
+          <Property Name="policy_member" Type="int" Nullable="false" />
+          <Property Name="existing_policy" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="cover_type" Type="int" Nullable="false" />
+          <Property Name="smoker" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="t_postcode">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Postcode" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="mod_postcode" Type="nvarchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="t_ppi_lead">
+          <Key>
+            <PropertyRef Name="ppi_lead_id" />
+          </Key>
+          <Property Name="ppi_lead_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="lead_id" Type="int" Nullable="false" />
+          <Property Name="date_of_birth" Type="datetime" Nullable="false" />
+          <Property Name="employement_status" Type="int" Nullable="false" />
+          <Property Name="loan_status" Type="int" Nullable="false" />
+          <Property Name="monthly_repayment" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="loan_amount" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="loan_duration" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="t_product_master">
+          <Key>
+            <PropertyRef Name="product_id" />
+          </Key>
+          <Property Name="product_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="product_name" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="parent_product_id" Type="int" Nullable="false" />
+          <Property Name="product_deleted" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="t_product_website">
+          <Key>
+            <PropertyRef Name="product_website_id" />
+          </Key>
+          <Property Name="product_website_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="product_id" Type="int" Nullable="false" />
+          <Property Name="website_id" Type="int" Nullable="false" />
+          <Property Name="lead_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="t_role_master">
+          <Key>
+            <PropertyRef Name="role_id" />
+          </Key>
+          <Property Name="role_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="role_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="role_desc" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="t_sme_mi_lead">
+          <Key>
+            <PropertyRef Name="sme_mi_lead_id" />
+          </Key>
+          <Property Name="sme_mi_lead_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="lead_id" Type="int" Nullable="false" />
+          <Property Name="company_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="no_of_employee" Type="int" Nullable="false" />
+          <Property Name="existing_policy" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="cover_type" Type="int" Nullable="false" />
+          <Property Name="company_address" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="company_city" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="company_postcode" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="t_solar_lead">
+          <Key>
+            <PropertyRef Name="solar_lead_id" />
+          </Key>
+          <Property Name="solar_lead_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="lead_id" Type="int" Nullable="false" />
+          <Property Name="property_type" Type="int" Nullable="false" />
+          <Property Name="home_owner" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="t_stage_master">
+          <Key>
+            <PropertyRef Name="stage_id" />
+          </Key>
+          <Property Name="stage_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="stage" Type="decimal" Precision="3" Scale="2" Nullable="false" />
+          <Property Name="stage_detail" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="t_status_type_master">
+          <Key>
+            <PropertyRef Name="status_id" />
+          </Key>
+          <Property Name="status_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="status_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="status_desc" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="creation_datetime" Type="datetime" Nullable="false" />
+          <Property Name="last_updated_datetime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="t_transfer_log">
+          <Key>
+            <PropertyRef Name="transfer_log_id" />
+          </Key>
+          <Property Name="transfer_log_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="generated_datetime" Type="datetime" Nullable="false" />
+          <Property Name="transfer_datetime" Type="datetime" Nullable="false" />
+          <Property Name="buyer_id" Type="int" Nullable="false" />
+          <Property Name="lead_id" Type="int" Nullable="false" />
+          <Property Name="buyer_return_lead_id" Type="int" />
+          <Property Name="buyer_end_status" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="status_id" Type="int" Nullable="false" />
+          <Property Name="msg_returned" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="t_user_master">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="first_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="last_name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="user_password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="last_updated_time" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="t_user_role">
+          <Key>
+            <PropertyRef Name="user_role" />
+          </Key>
+          <Property Name="user_role" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="role_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="t_website_master">
+          <Key>
+            <PropertyRef Name="website_id" />
+          </Key>
+          <Property Name="website_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="website_address" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="website_status" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="website_name" Type="nvarchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_t_asu_lead_t_common_leads">
+          <End Role="t_common_leads" Type="Self.t_common_leads" Multiplicity="1" />
+          <End Role="t_asu_lead" Type="Self.t_asu_lead" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_common_leads">
+              <PropertyRef Name="lead_id" />
+            </Principal>
+            <Dependent Role="t_asu_lead">
+              <PropertyRef Name="lead_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_authentication_token_t_user_master">
+          <End Role="t_user_master" Type="Self.t_user_master" Multiplicity="1" />
+          <End Role="t_authentication_token" Type="Self.t_authentication_token" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_user_master">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="t_authentication_token">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_buyer_product_criteria_t_buyer_product">
+          <End Role="t_buyer_master" Type="Self.t_buyer_master" Multiplicity="1" />
+          <End Role="t_buyer_product_criteria" Type="Self.t_buyer_product_criteria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_buyer_master">
+              <PropertyRef Name="buyer_id" />
+            </Principal>
+            <Dependent Role="t_buyer_product_criteria">
+              <PropertyRef Name="buyer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_buyer_product_criteria_t_product_master">
+          <End Role="t_product_master" Type="Self.t_product_master" Multiplicity="1" />
+          <End Role="t_buyer_product_criteria" Type="Self.t_buyer_product_criteria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_product_master">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="t_buyer_product_criteria">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_buyer_product_face_t_product_master">
+          <End Role="t_product_master" Type="Self.t_product_master" Multiplicity="1" />
+          <End Role="t_buyer_product_face" Type="Self.t_buyer_product_face" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_product_master">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="t_buyer_product_face">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_buyer_product_t_buyer_master">
+          <End Role="t_buyer_master" Type="Self.t_buyer_master" Multiplicity="1" />
+          <End Role="t_buyer_product" Type="Self.t_buyer_product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_buyer_master">
+              <PropertyRef Name="buyer_id" />
+            </Principal>
+            <Dependent Role="t_buyer_product">
+              <PropertyRef Name="buyer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_buyer_product_t_product_master">
+          <End Role="t_product_master" Type="Self.t_product_master" Multiplicity="1" />
+          <End Role="t_buyer_product" Type="Self.t_buyer_product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_product_master">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="t_buyer_product">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_common_lead_log_t_common_leads">
+          <End Role="t_common_leads" Type="Self.t_common_leads" Multiplicity="1" />
+          <End Role="t_common_lead_log" Type="Self.t_common_lead_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_common_leads">
+              <PropertyRef Name="lead_id" />
+            </Principal>
+            <Dependent Role="t_common_lead_log">
+              <PropertyRef Name="lead_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_common_lead_log_t_stage_master">
+          <End Role="t_stage_master" Type="Self.t_stage_master" Multiplicity="1" />
+          <End Role="t_common_lead_log" Type="Self.t_common_lead_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_stage_master">
+              <PropertyRef Name="stage_id" />
+            </Principal>
+            <Dependent Role="t_common_lead_log">
+              <PropertyRef Name="stage_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_common_leads_t_product_master">
+          <End Role="t_product_master" Type="Self.t_product_master" Multiplicity="1" />
+          <End Role="t_common_leads" Type="Self.t_common_leads" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_product_master">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="t_common_leads">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_debt_lead_t_common_leads">
+          <End Role="t_common_leads" Type="Self.t_common_leads" Multiplicity="1" />
+          <End Role="t_debt_lead" Type="Self.t_debt_lead" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_common_leads">
+              <PropertyRef Name="lead_id" />
+            </Principal>
+            <Dependent Role="t_debt_lead">
+              <PropertyRef Name="lead_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_equityrelease_lead_t_common_leads">
+          <End Role="t_common_leads" Type="Self.t_common_leads" Multiplicity="1" />
+          <End Role="t_equityrelease_lead" Type="Self.t_equityrelease_lead" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_common_leads">
+              <PropertyRef Name="lead_id" />
+            </Principal>
+            <Dependent Role="t_equityrelease_lead">
+              <PropertyRef Name="lead_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_ipi_lead_t_common_leads">
+          <End Role="t_common_leads" Type="Self.t_common_leads" Multiplicity="1" />
+          <End Role="t_ipi_lead" Type="Self.t_ipi_lead" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_common_leads">
+              <PropertyRef Name="lead_id" />
+            </Principal>
+            <Dependent Role="t_ipi_lead">
+              <PropertyRef Name="Lead_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_life_lead_t_common_leads">
+          <End Role="t_common_leads" Type="Self.t_common_leads" Multiplicity="1" />
+          <End Role="t_life_lead" Type="Self.t_life_lead" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_common_leads">
+              <PropertyRef Name="lead_id" />
+            </Principal>
+            <Dependent Role="t_life_lead">
+              <PropertyRef Name="lead_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_loan_lead_t_common_leads">
+          <End Role="t_common_leads" Type="Self.t_common_leads" Multiplicity="1" />
+          <End Role="t_loan_lead" Type="Self.t_loan_lead" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_common_leads">
+              <PropertyRef Name="lead_id" />
+            </Principal>
+            <Dependent Role="t_loan_lead">
+              <PropertyRef Name="lead_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_logbookloan_lead_t_common_leads">
+          <End Role="t_common_leads" Type="Self.t_common_leads" Multiplicity="1" />
+          <End Role="t_logbookloan_lead" Type="Self.t_logbookloan_lead" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_common_leads">
+              <PropertyRef Name="lead_id" />
+            </Principal>
+            <Dependent Role="t_logbookloan_lead">
+              <PropertyRef Name="lead_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_mortgage_lead_t_common_leads">
+          <End Role="t_common_leads" Type="Self.t_common_leads" Multiplicity="1" />
+          <End Role="t_mortgage_lead" Type="Self.t_mortgage_lead" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_common_leads">
+              <PropertyRef Name="lead_id" />
+            </Principal>
+            <Dependent Role="t_mortgage_lead">
+              <PropertyRef Name="lead_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_pmi_lead_t_common_leads">
+          <End Role="t_common_leads" Type="Self.t_common_leads" Multiplicity="1" />
+          <End Role="t_pmi_lead" Type="Self.t_pmi_lead" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_common_leads">
+              <PropertyRef Name="lead_id" />
+            </Principal>
+            <Dependent Role="t_pmi_lead">
+              <PropertyRef Name="lead_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_ppi_lead_t_common_leads">
+          <End Role="t_common_leads" Type="Self.t_common_leads" Multiplicity="1" />
+          <End Role="t_ppi_lead" Type="Self.t_ppi_lead" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_common_leads">
+              <PropertyRef Name="lead_id" />
+            </Principal>
+            <Dependent Role="t_ppi_lead">
+              <PropertyRef Name="lead_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_product_website_t_common_leads">
+          <End Role="t_common_leads" Type="Self.t_common_leads" Multiplicity="1" />
+          <End Role="t_product_website" Type="Self.t_product_website" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_common_leads">
+              <PropertyRef Name="lead_id" />
+            </Principal>
+            <Dependent Role="t_product_website">
+              <PropertyRef Name="lead_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_product_website_t_product_master">
+          <End Role="t_product_master" Type="Self.t_product_master" Multiplicity="1" />
+          <End Role="t_product_website" Type="Self.t_product_website" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_product_master">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="t_product_website">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_product_website_t_website_master">
+          <End Role="t_website_master" Type="Self.t_website_master" Multiplicity="1" />
+          <End Role="t_product_website" Type="Self.t_product_website" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_website_master">
+              <PropertyRef Name="website_id" />
+            </Principal>
+            <Dependent Role="t_product_website">
+              <PropertyRef Name="website_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_sme_mi_lead_t_common_leads">
+          <End Role="t_common_leads" Type="Self.t_common_leads" Multiplicity="1" />
+          <End Role="t_sme_mi_lead" Type="Self.t_sme_mi_lead" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_common_leads">
+              <PropertyRef Name="lead_id" />
+            </Principal>
+            <Dependent Role="t_sme_mi_lead">
+              <PropertyRef Name="lead_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_solar_lead_t_common_leads">
+          <End Role="t_common_leads" Type="Self.t_common_leads" Multiplicity="1" />
+          <End Role="t_solar_lead" Type="Self.t_solar_lead" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_common_leads">
+              <PropertyRef Name="lead_id" />
+            </Principal>
+            <Dependent Role="t_solar_lead">
+              <PropertyRef Name="lead_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_transfer_log_t_buyer_master">
+          <End Role="t_buyer_master" Type="Self.t_buyer_master" Multiplicity="1" />
+          <End Role="t_transfer_log" Type="Self.t_transfer_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_buyer_master">
+              <PropertyRef Name="buyer_id" />
+            </Principal>
+            <Dependent Role="t_transfer_log">
+              <PropertyRef Name="buyer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_transfer_log_t_common_leads">
+          <End Role="t_common_leads" Type="Self.t_common_leads" Multiplicity="1" />
+          <End Role="t_transfer_log" Type="Self.t_transfer_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_common_leads">
+              <PropertyRef Name="lead_id" />
+            </Principal>
+            <Dependent Role="t_transfer_log">
+              <PropertyRef Name="lead_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_transfer_log_t_status_type_master">
+          <End Role="t_status_type_master" Type="Self.t_status_type_master" Multiplicity="1" />
+          <End Role="t_transfer_log" Type="Self.t_transfer_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_status_type_master">
+              <PropertyRef Name="status_id" />
+            </Principal>
+            <Dependent Role="t_transfer_log">
+              <PropertyRef Name="status_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_user_role_t_role_master">
+          <End Role="t_role_master" Type="Self.t_role_master" Multiplicity="1" />
+          <End Role="t_user_role" Type="Self.t_user_role" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_role_master">
+              <PropertyRef Name="role_id" />
+            </Principal>
+            <Dependent Role="t_user_role">
+              <PropertyRef Name="role_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_user_role_t_user_master">
+          <End Role="t_user_master" Type="Self.t_user_master" Multiplicity="1" />
+          <End Role="t_user_role" Type="Self.t_user_role" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_user_master">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="t_user_role">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_website_master_t_website_master">
+          <End Role="t_website_master" Type="Self.t_website_master" Multiplicity="1" />
+          <End Role="t_website_master1" Type="Self.t_website_master" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="t_website_master">
+              <PropertyRef Name="website_id" />
+            </Principal>
+            <Dependent Role="t_website_master1">
+              <PropertyRef Name="website_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_1_t_stage_master">
+          <End Role="t_stage_master" Type="Self.t_stage_master" Multiplicity="1" />
+          <End Role="t_mortgage_lead_log" Type="Self.t_mortgage_lead_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_stage_master">
+              <PropertyRef Name="stage_id" />
+            </Principal>
+            <Dependent Role="t_mortgage_lead_log">
+              <PropertyRef Name="stage_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="sherlockModelStoreContainer">
+          <EntitySet Name="t_asu_lead" EntityType="Self.t_asu_lead" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_authentication_token" EntityType="Self.t_authentication_token" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_buyer_master" EntityType="Self.t_buyer_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_buyer_product" EntityType="Self.t_buyer_product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_buyer_product_criteria" EntityType="Self.t_buyer_product_criteria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_buyer_product_face" EntityType="Self.t_buyer_product_face" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_common_lead_log" EntityType="Self.t_common_lead_log" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_common_leads" EntityType="Self.t_common_leads" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_debt_lead" EntityType="Self.t_debt_lead" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_equityrelease_lead" EntityType="Self.t_equityrelease_lead" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_ipi_lead" EntityType="Self.t_ipi_lead" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_life_lead" EntityType="Self.t_life_lead" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_loan_lead" EntityType="Self.t_loan_lead" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_logbookloan_lead" EntityType="Self.t_logbookloan_lead" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_mortgage_lead" EntityType="Self.t_mortgage_lead" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_mortgage_lead_log" EntityType="Self.t_mortgage_lead_log" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_pmi_lead" EntityType="Self.t_pmi_lead" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_postcode" EntityType="Self.t_postcode" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_ppi_lead" EntityType="Self.t_ppi_lead" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_product_master" EntityType="Self.t_product_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_product_website" EntityType="Self.t_product_website" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_role_master" EntityType="Self.t_role_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_sme_mi_lead" EntityType="Self.t_sme_mi_lead" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_solar_lead" EntityType="Self.t_solar_lead" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_stage_master" EntityType="Self.t_stage_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_status_type_master" EntityType="Self.t_status_type_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_transfer_log" EntityType="Self.t_transfer_log" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_user_master" EntityType="Self.t_user_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_user_role" EntityType="Self.t_user_role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_website_master" EntityType="Self.t_website_master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="t_hoax" EntityType="Self.t_hoax" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [t_hoax].[Hoax_Name] AS [Hoax_Name], 
+    [t_hoax].[Hoax_City] AS [Hoax_City], 
+    [t_hoax].[Hoax_Email] AS [Hoax_Email], 
+    [t_hoax].[hoax_Contactno] AS [hoax_Contactno], 
+    [t_hoax].[Hoax_Postcode] AS [Hoax_Postcode]
+    FROM [dbo].[t_hoax] AS [t_hoax]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_t_asu_lead_t_common_leads" Association="Self.FK_t_asu_lead_t_common_leads">
+            <End Role="t_common_leads" EntitySet="t_common_leads" />
+            <End Role="t_asu_lead" EntitySet="t_asu_lead" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_authentication_token_t_user_master" Association="Self.FK_t_authentication_token_t_user_master">
+            <End Role="t_user_master" EntitySet="t_user_master" />
+            <End Role="t_authentication_token" EntitySet="t_authentication_token" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_buyer_product_criteria_t_buyer_product" Association="Self.FK_t_buyer_product_criteria_t_buyer_product">
+            <End Role="t_buyer_master" EntitySet="t_buyer_master" />
+            <End Role="t_buyer_product_criteria" EntitySet="t_buyer_product_criteria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_buyer_product_criteria_t_product_master" Association="Self.FK_t_buyer_product_criteria_t_product_master">
+            <End Role="t_product_master" EntitySet="t_product_master" />
+            <End Role="t_buyer_product_criteria" EntitySet="t_buyer_product_criteria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_buyer_product_face_t_product_master" Association="Self.FK_t_buyer_product_face_t_product_master">
+            <End Role="t_product_master" EntitySet="t_product_master" />
+            <End Role="t_buyer_product_face" EntitySet="t_buyer_product_face" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_buyer_product_t_buyer_master" Association="Self.FK_t_buyer_product_t_buyer_master">
+            <End Role="t_buyer_master" EntitySet="t_buyer_master" />
+            <End Role="t_buyer_product" EntitySet="t_buyer_product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_buyer_product_t_product_master" Association="Self.FK_t_buyer_product_t_product_master">
+            <End Role="t_product_master" EntitySet="t_product_master" />
+            <End Role="t_buyer_product" EntitySet="t_buyer_product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_common_lead_log_t_common_leads" Association="Self.FK_t_common_lead_log_t_common_leads">
+            <End Role="t_common_leads" EntitySet="t_common_leads" />
+            <End Role="t_common_lead_log" EntitySet="t_common_lead_log" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_common_lead_log_t_stage_master" Association="Self.FK_t_common_lead_log_t_stage_master">
+            <End Role="t_stage_master" EntitySet="t_stage_master" />
+            <End Role="t_common_lead_log" EntitySet="t_common_lead_log" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_common_leads_t_product_master" Association="Self.FK_t_common_leads_t_product_master">
+            <End Role="t_product_master" EntitySet="t_product_master" />
+            <End Role="t_common_leads" EntitySet="t_common_leads" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_debt_lead_t_common_leads" Association="Self.FK_t_debt_lead_t_common_leads">
+            <End Role="t_common_leads" EntitySet="t_common_leads" />
+            <End Role="t_debt_lead" EntitySet="t_debt_lead" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_equityrelease_lead_t_common_leads" Association="Self.FK_t_equityrelease_lead_t_common_leads">
+            <End Role="t_common_leads" EntitySet="t_common_leads" />
+            <End Role="t_equityrelease_lead" EntitySet="t_equityrelease_lead" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_ipi_lead_t_common_leads" Association="Self.FK_t_ipi_lead_t_common_leads">
+            <End Role="t_common_leads" EntitySet="t_common_leads" />
+            <End Role="t_ipi_lead" EntitySet="t_ipi_lead" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_life_lead_t_common_leads" Association="Self.FK_t_life_lead_t_common_leads">
+            <End Role="t_common_leads" EntitySet="t_common_leads" />
+            <End Role="t_life_lead" EntitySet="t_life_lead" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_loan_lead_t_common_leads" Association="Self.FK_t_loan_lead_t_common_leads">
+            <End Role="t_common_leads" EntitySet="t_common_leads" />
+            <End Role="t_loan_lead" EntitySet="t_loan_lead" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_logbookloan_lead_t_common_leads" Association="Self.FK_t_logbookloan_lead_t_common_leads">
+            <End Role="t_common_leads" EntitySet="t_common_leads" />
+            <End Role="t_logbookloan_lead" EntitySet="t_logbookloan_lead" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_mortgage_lead_t_common_leads" Association="Self.FK_t_mortgage_lead_t_common_leads">
+            <End Role="t_common_leads" EntitySet="t_common_leads" />
+            <End Role="t_mortgage_lead" EntitySet="t_mortgage_lead" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_pmi_lead_t_common_leads" Association="Self.FK_t_pmi_lead_t_common_leads">
+            <End Role="t_common_leads" EntitySet="t_common_leads" />
+            <End Role="t_pmi_lead" EntitySet="t_pmi_lead" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_ppi_lead_t_common_leads" Association="Self.FK_t_ppi_lead_t_common_leads">
+            <End Role="t_common_leads" EntitySet="t_common_leads" />
+            <End Role="t_ppi_lead" EntitySet="t_ppi_lead" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_product_website_t_common_leads" Association="Self.FK_t_product_website_t_common_leads">
+            <End Role="t_common_leads" EntitySet="t_common_leads" />
+            <End Role="t_product_website" EntitySet="t_product_website" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_product_website_t_product_master" Association="Self.FK_t_product_website_t_product_master">
+            <End Role="t_product_master" EntitySet="t_product_master" />
+            <End Role="t_product_website" EntitySet="t_product_website" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_product_website_t_website_master" Association="Self.FK_t_product_website_t_website_master">
+            <End Role="t_website_master" EntitySet="t_website_master" />
+            <End Role="t_product_website" EntitySet="t_product_website" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_sme_mi_lead_t_common_leads" Association="Self.FK_t_sme_mi_lead_t_common_leads">
+            <End Role="t_common_leads" EntitySet="t_common_leads" />
+            <End Role="t_sme_mi_lead" EntitySet="t_sme_mi_lead" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_solar_lead_t_common_leads" Association="Self.FK_t_solar_lead_t_common_leads">
+            <End Role="t_common_leads" EntitySet="t_common_leads" />
+            <End Role="t_solar_lead" EntitySet="t_solar_lead" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_transfer_log_t_buyer_master" Association="Self.FK_t_transfer_log_t_buyer_master">
+            <End Role="t_buyer_master" EntitySet="t_buyer_master" />
+            <End Role="t_transfer_log" EntitySet="t_transfer_log" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_transfer_log_t_common_leads" Association="Self.FK_t_transfer_log_t_common_leads">
+            <End Role="t_common_leads" EntitySet="t_common_leads" />
+            <End Role="t_transfer_log" EntitySet="t_transfer_log" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_transfer_log_t_status_type_master" Association="Self.FK_t_transfer_log_t_status_type_master">
+            <End Role="t_status_type_master" EntitySet="t_status_type_master" />
+            <End Role="t_transfer_log" EntitySet="t_transfer_log" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_user_role_t_role_master" Association="Self.FK_t_user_role_t_role_master">
+            <End Role="t_role_master" EntitySet="t_role_master" />
+            <End Role="t_user_role" EntitySet="t_user_role" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_user_role_t_user_master" Association="Self.FK_t_user_role_t_user_master">
+            <End Role="t_user_master" EntitySet="t_user_master" />
+            <End Role="t_user_role" EntitySet="t_user_role" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_website_master_t_website_master" Association="Self.FK_t_website_master_t_website_master">
+            <End Role="t_website_master" EntitySet="t_website_master" />
+            <End Role="t_website_master1" EntitySet="t_website_master" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_1_t_stage_master" Association="Self.FK_Table_1_t_stage_master">
+            <End Role="t_stage_master" EntitySet="t_stage_master" />
+            <End Role="t_mortgage_lead_log" EntitySet="t_mortgage_lead_log" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="sherlockModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="t_asu_lead">
+          <Key>
+            <PropertyRef Name="asu_lead_id" />
+          </Key>
+          <Property Name="asu_lead_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="lead_id" Type="Int32" Nullable="false" />
+          <Property Name="date_of_birth" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="age" Type="Int32" Nullable="false" />
+          <Property Name="employment_status" Type="Int32" Nullable="false" />
+          <Property Name="period" Type="Int32" Nullable="false" />
+          <Property Name="amount" Type="Int32" Nullable="false" />
+          <Property Name="smoker" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cover_type" Type="Int32" Nullable="false" />
+          <Property Name="product_type" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="t_common_leads" Relationship="Self.FK_t_asu_lead_t_common_leads" FromRole="t_asu_lead" ToRole="t_common_leads" />
+        </EntityType>
+        <EntityType Name="t_authentication_token">
+          <Key>
+            <PropertyRef Name="token_id" />
+          </Key>
+          <Property Name="token_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="auth_token" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="issues_on" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="expires_on" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="t_user_master" Relationship="Self.FK_t_authentication_token_t_user_master" FromRole="t_authentication_token" ToRole="t_user_master" />
+        </EntityType>
+        <EntityType Name="t_buyer_master">
+          <Key>
+            <PropertyRef Name="buyer_id" />
+          </Key>
+          <Property Name="buyer_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="buyer_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="buyer_address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="buyer_pincode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="buyer_poc_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="buyer_contact_number" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="buyer_poc_contact_number" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="buyer_type" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="t_buyer_product_criteria" Relationship="Self.FK_t_buyer_product_criteria_t_buyer_product" FromRole="t_buyer_master" ToRole="t_buyer_product_criteria" />
+          <NavigationProperty Name="t_buyer_product" Relationship="Self.FK_t_buyer_product_t_buyer_master" FromRole="t_buyer_master" ToRole="t_buyer_product" />
+          <NavigationProperty Name="t_transfer_log" Relationship="Self.FK_t_transfer_log_t_buyer_master" FromRole="t_buyer_master" ToRole="t_transfer_log" />
+        </EntityType>
+        <EntityType Name="t_buyer_product">
+          <Key>
+            <PropertyRef Name="buyer_product_id" />
+          </Key>
+          <Property Name="buyer_product_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="buyer_id" Type="Int32" Nullable="false" />
+          <Property Name="product_id" Type="Int32" Nullable="false" />
+          <Property Name="integration_type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="buyer_quota" Type="Int32" Nullable="false" />
+          <Property Name="buyer_priority" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="start_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="end_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="buyer_status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="buyer_payment_mode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="prepaid_order_amount" Type="String" MaxLength="18" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="product_price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="remaining_amount" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+          <NavigationProperty Name="t_buyer_master" Relationship="Self.FK_t_buyer_product_t_buyer_master" FromRole="t_buyer_product" ToRole="t_buyer_master" />
+          <NavigationProperty Name="t_product_master" Relationship="Self.FK_t_buyer_product_t_product_master" FromRole="t_buyer_product" ToRole="t_product_master" />
+        </EntityType>
+        <EntityType Name="t_buyer_product_criteria">
+          <Key>
+            <PropertyRef Name="buyer_product_criteria_id" />
+          </Key>
+          <Property Name="buyer_product_criteria_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="product_id" Type="Int32" Nullable="false" />
+          <Property Name="buyer_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="t_buyer_master" Relationship="Self.FK_t_buyer_product_criteria_t_buyer_product" FromRole="t_buyer_product_criteria" ToRole="t_buyer_master" />
+          <NavigationProperty Name="t_product_master" Relationship="Self.FK_t_buyer_product_criteria_t_product_master" FromRole="t_buyer_product_criteria" ToRole="t_product_master" />
+        </EntityType>
+        <EntityType Name="t_buyer_product_face">
+          <Key>
+            <PropertyRef Name="buyer_product_face_id" />
+          </Key>
+          <Property Name="buyer_product_face_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="product_id" Type="Int32" Nullable="false" />
+          <Property Name="product_column_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="expected_column_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="excluded" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="t_product_master" Relationship="Self.FK_t_buyer_product_face_t_product_master" FromRole="t_buyer_product_face" ToRole="t_product_master" />
+        </EntityType>
+        <EntityType Name="t_common_lead_log">
+          <Key>
+            <PropertyRef Name="log_id" />
+          </Key>
+          <Property Name="log_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="lead_id" Type="Int32" Nullable="false" />
+          <Property Name="stage_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="t_common_leads" Relationship="Self.FK_t_common_lead_log_t_common_leads" FromRole="t_common_lead_log" ToRole="t_common_leads" />
+          <NavigationProperty Name="t_stage_master" Relationship="Self.FK_t_common_lead_log_t_stage_master" FromRole="t_common_lead_log" ToRole="t_stage_master" />
+        </EntityType>
+        <EntityType Name="t_common_leads">
+          <Key>
+            <PropertyRef Name="lead_id" />
+          </Key>
+          <Property Name="lead_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="first_name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="last_name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="city" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="postcode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Home_Mobile_Phone1" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Home_Mobile_Phone2" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="product_id" Type="Int32" Nullable="false" />
+          <Property Name="ip_address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="source" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="match_type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="keyword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="lead_status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cretaed_on" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="created_by" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="updated_on" Type="DateTime" Precision="3" />
+          <Property Name="updtaed_by" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="t_asu_lead" Relationship="Self.FK_t_asu_lead_t_common_leads" FromRole="t_common_leads" ToRole="t_asu_lead" />
+          <NavigationProperty Name="t_common_lead_log" Relationship="Self.FK_t_common_lead_log_t_common_leads" FromRole="t_common_leads" ToRole="t_common_lead_log" />
+          <NavigationProperty Name="t_product_master" Relationship="Self.FK_t_common_leads_t_product_master" FromRole="t_common_leads" ToRole="t_product_master" />
+          <NavigationProperty Name="t_debt_lead" Relationship="Self.FK_t_debt_lead_t_common_leads" FromRole="t_common_leads" ToRole="t_debt_lead" />
+          <NavigationProperty Name="t_equityrelease_lead" Relationship="Self.FK_t_equityrelease_lead_t_common_leads" FromRole="t_common_leads" ToRole="t_equityrelease_lead" />
+          <NavigationProperty Name="t_ipi_lead" Relationship="Self.FK_t_ipi_lead_t_common_leads" FromRole="t_common_leads" ToRole="t_ipi_lead" />
+          <NavigationProperty Name="t_life_lead" Relationship="Self.FK_t_life_lead_t_common_leads" FromRole="t_common_leads" ToRole="t_life_lead" />
+          <NavigationProperty Name="t_loan_lead" Relationship="Self.FK_t_loan_lead_t_common_leads" FromRole="t_common_leads" ToRole="t_loan_lead" />
+          <NavigationProperty Name="t_logbookloan_lead" Relationship="Self.FK_t_logbookloan_lead_t_common_leads" FromRole="t_common_leads" ToRole="t_logbookloan_lead" />
+          <NavigationProperty Name="t_mortgage_lead" Relationship="Self.FK_t_mortgage_lead_t_common_leads" FromRole="t_common_leads" ToRole="t_mortgage_lead" />
+          <NavigationProperty Name="t_pmi_lead" Relationship="Self.FK_t_pmi_lead_t_common_leads" FromRole="t_common_leads" ToRole="t_pmi_lead" />
+          <NavigationProperty Name="t_ppi_lead" Relationship="Self.FK_t_ppi_lead_t_common_leads" FromRole="t_common_leads" ToRole="t_ppi_lead" />
+          <NavigationProperty Name="t_product_website" Relationship="Self.FK_t_product_website_t_common_leads" FromRole="t_common_leads" ToRole="t_product_website" />
+          <NavigationProperty Name="t_sme_mi_lead" Relationship="Self.FK_t_sme_mi_lead_t_common_leads" FromRole="t_common_leads" ToRole="t_sme_mi_lead" />
+          <NavigationProperty Name="t_solar_lead" Relationship="Self.FK_t_solar_lead_t_common_leads" FromRole="t_common_leads" ToRole="t_solar_lead" />
+          <NavigationProperty Name="t_transfer_log" Relationship="Self.FK_t_transfer_log_t_common_leads" FromRole="t_common_leads" ToRole="t_transfer_log" />
+        </EntityType>
+        <EntityType Name="t_debt_lead">
+          <Key>
+            <PropertyRef Name="debt_lead_id" />
+          </Key>
+          <Property Name="debt_lead_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="lead_id" Type="Int32" Nullable="false" />
+          <Property Name="date_of_birth" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="age" Type="Int32" Nullable="false" />
+          <Property Name="employement_status" Type="Int32" Nullable="false" />
+          <Property Name="resinedtial_location" Type="Int32" Nullable="false" />
+          <Property Name="total_creditors" Type="Int32" Nullable="false" />
+          <Property Name="debt_type" Type="Int32" />
+          <Property Name="total_unsecured_debt" Type="Int32" Nullable="false" />
+          <Property Name="monthly_repayment" Type="Int32" Nullable="false" />
+          <Property Name="monthly_income" Type="Int32" />
+          <Property Name="monthly_disposable" Type="Int32" />
+          <Property Name="debt_residential_status_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="t_common_leads" Relationship="Self.FK_t_debt_lead_t_common_leads" FromRole="t_debt_lead" ToRole="t_common_leads" />
+        </EntityType>
+        <EntityType Name="t_equityrelease_lead">
+          <Key>
+            <PropertyRef Name="equityrelease_lead_id" />
+          </Key>
+          <Property Name="equityrelease_lead_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="lead_id" Type="Int32" Nullable="false" />
+          <Property Name="date_of_birth" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="age" Type="Int32" Nullable="false" />
+          <Property Name="property_value" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="mortgage_balance" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="t_common_leads" Relationship="Self.FK_t_equityrelease_lead_t_common_leads" FromRole="t_equityrelease_lead" ToRole="t_common_leads" />
+        </EntityType>
+        <EntityType Name="t_ipi_lead">
+          <Key>
+            <PropertyRef Name="ipi_lead_id" />
+          </Key>
+          <Property Name="ipi_lead_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Lead_id" Type="Int32" Nullable="false" />
+          <Property Name="date_of_birth" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="age" Type="Int32" Nullable="false" />
+          <Property Name="employment_status" Type="Int32" Nullable="false" />
+          <Property Name="cover_type" Type="Int32" Nullable="false" />
+          <Property Name="amount" Type="Int32" Nullable="false" />
+          <Property Name="product_type" Type="Int32" Nullable="false" />
+          <Property Name="period" Type="Int32" Nullable="false" />
+          <Property Name="smoker" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="t_common_leads" Relationship="Self.FK_t_ipi_lead_t_common_leads" FromRole="t_ipi_lead" ToRole="t_common_leads" />
+        </EntityType>
+        <EntityType Name="t_life_lead">
+          <Key>
+            <PropertyRef Name="life_lead_id" />
+          </Key>
+          <Property Name="life_lead_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="lead_id" Type="Int32" Nullable="false" />
+          <Property Name="date_of_birth" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="insurance_type_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="premium_type_id" Type="Int32" Nullable="false" />
+          <Property Name="age" Type="Int32" Nullable="false" />
+          <Property Name="period" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="amount" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="smoker" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="partner_first_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="partner_last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="partner_smoker" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="partner_dob" Type="DateTime" Precision="3" />
+          <Property Name="single_ownership" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="critical_illness" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="t_common_leads" Relationship="Self.FK_t_life_lead_t_common_leads" FromRole="t_life_lead" ToRole="t_common_leads" />
+        </EntityType>
+        <EntityType Name="t_loan_lead">
+          <Key>
+            <PropertyRef Name="loan_lead_id" />
+          </Key>
+          <Property Name="loan_lead_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="lead_id" Type="Int32" Nullable="false" />
+          <Property Name="date_of_birth" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="age" Type="Int32" Nullable="false" />
+          <Property Name="employment_status" Type="Int32" Nullable="false" />
+          <Property Name="period" Type="Int32" Nullable="false" />
+          <Property Name="property_value" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="loan_value" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="loan_type" Type="Int32" />
+          <Property Name="loan_purpose_id" Type="Int32" Nullable="false" />
+          <Property Name="home_owner" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="mortgage_balance" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="query_string" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="marital_status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="country_of_residance" Type="Int32" Nullable="false" />
+          <Property Name="annual_income" Type="Int32" Nullable="false" />
+          <Property Name="credit_rating" Type="Int32" Nullable="false" />
+          <Property Name="loan_guarantor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="been_in_debt" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="total_creditor" Type="Int32" />
+          <Property Name="address_start_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="occupation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="employer_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="employer_since" Type="DateTime" Precision="3" />
+          <Property Name="previous_address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="previous_city" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="previous_postcode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="previous_address_since" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="t_common_leads" Relationship="Self.FK_t_loan_lead_t_common_leads" FromRole="t_loan_lead" ToRole="t_common_leads" />
+        </EntityType>
+        <EntityType Name="t_logbookloan_lead">
+          <Key>
+            <PropertyRef Name="logbookloan_lead_id" />
+          </Key>
+          <Property Name="logbookloan_lead_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="lead_id" Type="Int32" Nullable="false" />
+          <Property Name="date_of_birth" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="age" Type="Int32" Nullable="false" />
+          <Property Name="country_of_residence" Type="Int32" Nullable="false" />
+          <Property Name="car_make" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="car_model" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="car_registration_year" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="number_plate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="current_mileage" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="clear_of_finance" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="contact_time" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="loan_value" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="t_common_leads" Relationship="Self.FK_t_logbookloan_lead_t_common_leads" FromRole="t_logbookloan_lead" ToRole="t_common_leads" />
+        </EntityType>
+        <EntityType Name="t_mortgage_lead">
+          <Key>
+            <PropertyRef Name="mortgage_lead_id" />
+          </Key>
+          <Property Name="mortgage_lead_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="lead_id" Type="Int32" Nullable="false" />
+          <Property Name="date_of_birth" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="age" Type="Int32" Nullable="false" />
+          <Property Name="employment_status" Type="Int32" Nullable="false" />
+          <Property Name="period_term" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="property_value" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="loan_value" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="mortgage_type" Type="Int32" Nullable="false" />
+          <Property Name="current_debt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="property_type" Type="Int32" Nullable="false" />
+          <Property Name="property_location" Type="Int32" Nullable="false" />
+          <Property Name="credit_history" Type="Int32" Nullable="false" />
+          <Property Name="annual_income" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="miss_any_loan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="had_bankruptcy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="applied_iva" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="had_ccj" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="rate_id" Type="Int32" Nullable="false" />
+          <Property Name="repayment_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="t_common_leads" Relationship="Self.FK_t_mortgage_lead_t_common_leads" FromRole="t_mortgage_lead" ToRole="t_common_leads" />
+        </EntityType>
+        <EntityType Name="t_mortgage_lead_log">
+          <Key>
+            <PropertyRef Name="mortgage_log_id" />
+          </Key>
+          <Property Name="mortgage_log_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="mortgage_lead_id" Type="Int32" Nullable="false" />
+          <Property Name="stage_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="t_stage_master" Relationship="Self.FK_Table_1_t_stage_master" FromRole="t_mortgage_lead_log" ToRole="t_stage_master" />
+        </EntityType>
+        <EntityType Name="t_pmi_lead">
+          <Key>
+            <PropertyRef Name="pmi_lead_id" />
+          </Key>
+          <Property Name="pmi_lead_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="lead_id" Type="Int32" Nullable="false" />
+          <Property Name="date_of_birth" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="age" Type="Int32" Nullable="false" />
+          <Property Name="policy_member" Type="Int32" Nullable="false" />
+          <Property Name="existing_policy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cover_type" Type="Int32" Nullable="false" />
+          <Property Name="smoker" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="t_common_leads" Relationship="Self.FK_t_pmi_lead_t_common_leads" FromRole="t_pmi_lead" ToRole="t_common_leads" />
+        </EntityType>
+        <EntityType Name="t_postcode">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Postcode" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="mod_postcode" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="t_ppi_lead">
+          <Key>
+            <PropertyRef Name="ppi_lead_id" />
+          </Key>
+          <Property Name="ppi_lead_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="lead_id" Type="Int32" Nullable="false" />
+          <Property Name="date_of_birth" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="employement_status" Type="Int32" Nullable="false" />
+          <Property Name="loan_status" Type="Int32" Nullable="false" />
+          <Property Name="monthly_repayment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="loan_amount" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="loan_duration" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="t_common_leads" Relationship="Self.FK_t_ppi_lead_t_common_leads" FromRole="t_ppi_lead" ToRole="t_common_leads" />
+        </EntityType>
+        <EntityType Name="t_product_master">
+          <Key>
+            <PropertyRef Name="product_id" />
+          </Key>
+          <Property Name="product_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="product_name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="parent_product_id" Type="Int32" Nullable="false" />
+          <Property Name="product_deleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="t_buyer_product" Relationship="Self.FK_t_buyer_product_t_product_master" FromRole="t_product_master" ToRole="t_buyer_product" />
+          <NavigationProperty Name="t_buyer_product_criteria" Relationship="Self.FK_t_buyer_product_criteria_t_product_master" FromRole="t_product_master" ToRole="t_buyer_product_criteria" />
+          <NavigationProperty Name="t_buyer_product_face" Relationship="Self.FK_t_buyer_product_face_t_product_master" FromRole="t_product_master" ToRole="t_buyer_product_face" />
+          <NavigationProperty Name="t_common_leads" Relationship="Self.FK_t_common_leads_t_product_master" FromRole="t_product_master" ToRole="t_common_leads" />
+          <NavigationProperty Name="t_product_website" Relationship="Self.FK_t_product_website_t_product_master" FromRole="t_product_master" ToRole="t_product_website" />
+        </EntityType>
+        <EntityType Name="t_product_website">
+          <Key>
+            <PropertyRef Name="product_website_id" />
+          </Key>
+          <Property Name="product_website_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="product_id" Type="Int32" Nullable="false" />
+          <Property Name="website_id" Type="Int32" Nullable="false" />
+          <Property Name="lead_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="t_common_leads" Relationship="Self.FK_t_product_website_t_common_leads" FromRole="t_product_website" ToRole="t_common_leads" />
+          <NavigationProperty Name="t_product_master" Relationship="Self.FK_t_product_website_t_product_master" FromRole="t_product_website" ToRole="t_product_master" />
+          <NavigationProperty Name="t_website_master" Relationship="Self.FK_t_product_website_t_website_master" FromRole="t_product_website" ToRole="t_website_master" />
+        </EntityType>
+        <EntityType Name="t_role_master">
+          <Key>
+            <PropertyRef Name="role_id" />
+          </Key>
+          <Property Name="role_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="role_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="role_desc" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="t_user_role" Relationship="Self.FK_t_user_role_t_role_master" FromRole="t_role_master" ToRole="t_user_role" />
+        </EntityType>
+        <EntityType Name="t_sme_mi_lead">
+          <Key>
+            <PropertyRef Name="sme_mi_lead_id" />
+          </Key>
+          <Property Name="sme_mi_lead_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="lead_id" Type="Int32" Nullable="false" />
+          <Property Name="company_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="no_of_employee" Type="Int32" Nullable="false" />
+          <Property Name="existing_policy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cover_type" Type="Int32" Nullable="false" />
+          <Property Name="company_address" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="company_city" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="company_postcode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="t_common_leads" Relationship="Self.FK_t_sme_mi_lead_t_common_leads" FromRole="t_sme_mi_lead" ToRole="t_common_leads" />
+        </EntityType>
+        <EntityType Name="t_solar_lead">
+          <Key>
+            <PropertyRef Name="solar_lead_id" />
+          </Key>
+          <Property Name="solar_lead_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="lead_id" Type="Int32" Nullable="false" />
+          <Property Name="property_type" Type="Int32" Nullable="false" />
+          <Property Name="home_owner" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="t_common_leads" Relationship="Self.FK_t_solar_lead_t_common_leads" FromRole="t_solar_lead" ToRole="t_common_leads" />
+        </EntityType>
+        <EntityType Name="t_stage_master">
+          <Key>
+            <PropertyRef Name="stage_id" />
+          </Key>
+          <Property Name="stage_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="stage" Type="Decimal" Precision="3" Scale="2" Nullable="false" />
+          <Property Name="stage_detail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="t_common_lead_log" Relationship="Self.FK_t_common_lead_log_t_stage_master" FromRole="t_stage_master" ToRole="t_common_lead_log" />
+          <NavigationProperty Name="t_mortgage_lead_log" Relationship="Self.FK_Table_1_t_stage_master" FromRole="t_stage_master" ToRole="t_mortgage_lead_log" />
+        </EntityType>
+        <EntityType Name="t_status_type_master">
+          <Key>
+            <PropertyRef Name="status_id" />
+          </Key>
+          <Property Name="status_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="status_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="status_desc" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="creation_datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="last_updated_datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="t_transfer_log" Relationship="Self.FK_t_transfer_log_t_status_type_master" FromRole="t_status_type_master" ToRole="t_transfer_log" />
+        </EntityType>
+        <EntityType Name="t_transfer_log">
+          <Key>
+            <PropertyRef Name="transfer_log_id" />
+          </Key>
+          <Property Name="transfer_log_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="generated_datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="transfer_datetime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="buyer_id" Type="Int32" Nullable="false" />
+          <Property Name="lead_id" Type="Int32" Nullable="false" />
+          <Property Name="buyer_return_lead_id" Type="Int32" />
+          <Property Name="buyer_end_status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="status_id" Type="Int32" Nullable="false" />
+          <Property Name="msg_returned" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="t_buyer_master" Relationship="Self.FK_t_transfer_log_t_buyer_master" FromRole="t_transfer_log" ToRole="t_buyer_master" />
+          <NavigationProperty Name="t_common_leads" Relationship="Self.FK_t_transfer_log_t_common_leads" FromRole="t_transfer_log" ToRole="t_common_leads" />
+          <NavigationProperty Name="t_status_type_master" Relationship="Self.FK_t_transfer_log_t_status_type_master" FromRole="t_transfer_log" ToRole="t_status_type_master" />
+        </EntityType>
+        <EntityType Name="t_user_master">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="first_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="last_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="user_password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="last_updated_time" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="t_authentication_token" Relationship="Self.FK_t_authentication_token_t_user_master" FromRole="t_user_master" ToRole="t_authentication_token" />
+          <NavigationProperty Name="t_user_role" Relationship="Self.FK_t_user_role_t_user_master" FromRole="t_user_master" ToRole="t_user_role" />
+        </EntityType>
+        <EntityType Name="t_user_role">
+          <Key>
+            <PropertyRef Name="user_role" />
+          </Key>
+          <Property Name="user_role" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="Int32" Nullable="false" />
+          <Property Name="role_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="t_role_master" Relationship="Self.FK_t_user_role_t_role_master" FromRole="t_user_role" ToRole="t_role_master" />
+          <NavigationProperty Name="t_user_master" Relationship="Self.FK_t_user_role_t_user_master" FromRole="t_user_role" ToRole="t_user_master" />
+        </EntityType>
+        <EntityType Name="t_website_master">
+          <Key>
+            <PropertyRef Name="website_id" />
+          </Key>
+          <Property Name="website_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="website_address" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="website_status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="website_name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="t_product_website" Relationship="Self.FK_t_product_website_t_website_master" FromRole="t_website_master" ToRole="t_product_website" />
+          <NavigationProperty Name="t_website_master1" Relationship="Self.FK_t_website_master_t_website_master" FromRole="t_website_master" ToRole="t_website_master1" />
+          <NavigationProperty Name="t_website_master2" Relationship="Self.FK_t_website_master_t_website_master" FromRole="t_website_master1" ToRole="t_website_master" />
+        </EntityType>
+        <EntityType Name="t_hoax">
+          <Key>
+            <PropertyRef Name="Hoax_Name" />
+            <PropertyRef Name="Hoax_City" />
+            <PropertyRef Name="Hoax_Email" />
+            <PropertyRef Name="hoax_Contactno" />
+            <PropertyRef Name="Hoax_Postcode" />
+          </Key>
+          <Property Name="Hoax_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Hoax_City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Hoax_Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="hoax_Contactno" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Hoax_Postcode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_t_asu_lead_t_common_leads">
+          <End Role="t_common_leads" Type="Self.t_common_leads" Multiplicity="1" />
+          <End Role="t_asu_lead" Type="Self.t_asu_lead" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_common_leads">
+              <PropertyRef Name="lead_id" />
+            </Principal>
+            <Dependent Role="t_asu_lead">
+              <PropertyRef Name="lead_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_authentication_token_t_user_master">
+          <End Role="t_user_master" Type="Self.t_user_master" Multiplicity="1" />
+          <End Role="t_authentication_token" Type="Self.t_authentication_token" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_user_master">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="t_authentication_token">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_buyer_product_criteria_t_buyer_product">
+          <End Role="t_buyer_master" Type="Self.t_buyer_master" Multiplicity="1" />
+          <End Role="t_buyer_product_criteria" Type="Self.t_buyer_product_criteria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_buyer_master">
+              <PropertyRef Name="buyer_id" />
+            </Principal>
+            <Dependent Role="t_buyer_product_criteria">
+              <PropertyRef Name="buyer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_buyer_product_t_buyer_master">
+          <End Role="t_buyer_master" Type="Self.t_buyer_master" Multiplicity="1" />
+          <End Role="t_buyer_product" Type="Self.t_buyer_product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_buyer_master">
+              <PropertyRef Name="buyer_id" />
+            </Principal>
+            <Dependent Role="t_buyer_product">
+              <PropertyRef Name="buyer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_transfer_log_t_buyer_master">
+          <End Role="t_buyer_master" Type="Self.t_buyer_master" Multiplicity="1" />
+          <End Role="t_transfer_log" Type="Self.t_transfer_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_buyer_master">
+              <PropertyRef Name="buyer_id" />
+            </Principal>
+            <Dependent Role="t_transfer_log">
+              <PropertyRef Name="buyer_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_buyer_product_t_product_master">
+          <End Role="t_product_master" Type="Self.t_product_master" Multiplicity="1" />
+          <End Role="t_buyer_product" Type="Self.t_buyer_product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_product_master">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="t_buyer_product">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_buyer_product_criteria_t_product_master">
+          <End Role="t_product_master" Type="Self.t_product_master" Multiplicity="1" />
+          <End Role="t_buyer_product_criteria" Type="Self.t_buyer_product_criteria" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_product_master">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="t_buyer_product_criteria">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_buyer_product_face_t_product_master">
+          <End Role="t_product_master" Type="Self.t_product_master" Multiplicity="1" />
+          <End Role="t_buyer_product_face" Type="Self.t_buyer_product_face" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_product_master">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="t_buyer_product_face">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_common_lead_log_t_common_leads">
+          <End Role="t_common_leads" Type="Self.t_common_leads" Multiplicity="1" />
+          <End Role="t_common_lead_log" Type="Self.t_common_lead_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_common_leads">
+              <PropertyRef Name="lead_id" />
+            </Principal>
+            <Dependent Role="t_common_lead_log">
+              <PropertyRef Name="lead_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_common_lead_log_t_stage_master">
+          <End Role="t_stage_master" Type="Self.t_stage_master" Multiplicity="1" />
+          <End Role="t_common_lead_log" Type="Self.t_common_lead_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_stage_master">
+              <PropertyRef Name="stage_id" />
+            </Principal>
+            <Dependent Role="t_common_lead_log">
+              <PropertyRef Name="stage_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_common_leads_t_product_master">
+          <End Role="t_product_master" Type="Self.t_product_master" Multiplicity="1" />
+          <End Role="t_common_leads" Type="Self.t_common_leads" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_product_master">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="t_common_leads">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_debt_lead_t_common_leads">
+          <End Role="t_common_leads" Type="Self.t_common_leads" Multiplicity="1" />
+          <End Role="t_debt_lead" Type="Self.t_debt_lead" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_common_leads">
+              <PropertyRef Name="lead_id" />
+            </Principal>
+            <Dependent Role="t_debt_lead">
+              <PropertyRef Name="lead_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_equityrelease_lead_t_common_leads">
+          <End Role="t_common_leads" Type="Self.t_common_leads" Multiplicity="1" />
+          <End Role="t_equityrelease_lead" Type="Self.t_equityrelease_lead" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_common_leads">
+              <PropertyRef Name="lead_id" />
+            </Principal>
+            <Dependent Role="t_equityrelease_lead">
+              <PropertyRef Name="lead_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_ipi_lead_t_common_leads">
+          <End Role="t_common_leads" Type="Self.t_common_leads" Multiplicity="1" />
+          <End Role="t_ipi_lead" Type="Self.t_ipi_lead" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_common_leads">
+              <PropertyRef Name="lead_id" />
+            </Principal>
+            <Dependent Role="t_ipi_lead">
+              <PropertyRef Name="Lead_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_life_lead_t_common_leads">
+          <End Role="t_common_leads" Type="Self.t_common_leads" Multiplicity="1" />
+          <End Role="t_life_lead" Type="Self.t_life_lead" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_common_leads">
+              <PropertyRef Name="lead_id" />
+            </Principal>
+            <Dependent Role="t_life_lead">
+              <PropertyRef Name="lead_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_loan_lead_t_common_leads">
+          <End Role="t_common_leads" Type="Self.t_common_leads" Multiplicity="1" />
+          <End Role="t_loan_lead" Type="Self.t_loan_lead" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_common_leads">
+              <PropertyRef Name="lead_id" />
+            </Principal>
+            <Dependent Role="t_loan_lead">
+              <PropertyRef Name="lead_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_logbookloan_lead_t_common_leads">
+          <End Role="t_common_leads" Type="Self.t_common_leads" Multiplicity="1" />
+          <End Role="t_logbookloan_lead" Type="Self.t_logbookloan_lead" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_common_leads">
+              <PropertyRef Name="lead_id" />
+            </Principal>
+            <Dependent Role="t_logbookloan_lead">
+              <PropertyRef Name="lead_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_mortgage_lead_t_common_leads">
+          <End Role="t_common_leads" Type="Self.t_common_leads" Multiplicity="1" />
+          <End Role="t_mortgage_lead" Type="Self.t_mortgage_lead" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_common_leads">
+              <PropertyRef Name="lead_id" />
+            </Principal>
+            <Dependent Role="t_mortgage_lead">
+              <PropertyRef Name="lead_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_pmi_lead_t_common_leads">
+          <End Role="t_common_leads" Type="Self.t_common_leads" Multiplicity="1" />
+          <End Role="t_pmi_lead" Type="Self.t_pmi_lead" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_common_leads">
+              <PropertyRef Name="lead_id" />
+            </Principal>
+            <Dependent Role="t_pmi_lead">
+              <PropertyRef Name="lead_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_ppi_lead_t_common_leads">
+          <End Role="t_common_leads" Type="Self.t_common_leads" Multiplicity="1" />
+          <End Role="t_ppi_lead" Type="Self.t_ppi_lead" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_common_leads">
+              <PropertyRef Name="lead_id" />
+            </Principal>
+            <Dependent Role="t_ppi_lead">
+              <PropertyRef Name="lead_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_product_website_t_common_leads">
+          <End Role="t_common_leads" Type="Self.t_common_leads" Multiplicity="1" />
+          <End Role="t_product_website" Type="Self.t_product_website" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_common_leads">
+              <PropertyRef Name="lead_id" />
+            </Principal>
+            <Dependent Role="t_product_website">
+              <PropertyRef Name="lead_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_sme_mi_lead_t_common_leads">
+          <End Role="t_common_leads" Type="Self.t_common_leads" Multiplicity="1" />
+          <End Role="t_sme_mi_lead" Type="Self.t_sme_mi_lead" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_common_leads">
+              <PropertyRef Name="lead_id" />
+            </Principal>
+            <Dependent Role="t_sme_mi_lead">
+              <PropertyRef Name="lead_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_solar_lead_t_common_leads">
+          <End Role="t_common_leads" Type="Self.t_common_leads" Multiplicity="1" />
+          <End Role="t_solar_lead" Type="Self.t_solar_lead" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_common_leads">
+              <PropertyRef Name="lead_id" />
+            </Principal>
+            <Dependent Role="t_solar_lead">
+              <PropertyRef Name="lead_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_transfer_log_t_common_leads">
+          <End Role="t_common_leads" Type="Self.t_common_leads" Multiplicity="1" />
+          <End Role="t_transfer_log" Type="Self.t_transfer_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_common_leads">
+              <PropertyRef Name="lead_id" />
+            </Principal>
+            <Dependent Role="t_transfer_log">
+              <PropertyRef Name="lead_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_1_t_stage_master">
+          <End Role="t_stage_master" Type="Self.t_stage_master" Multiplicity="1" />
+          <End Role="t_mortgage_lead_log" Type="Self.t_mortgage_lead_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_stage_master">
+              <PropertyRef Name="stage_id" />
+            </Principal>
+            <Dependent Role="t_mortgage_lead_log">
+              <PropertyRef Name="stage_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_product_website_t_product_master">
+          <End Role="t_product_master" Type="Self.t_product_master" Multiplicity="1" />
+          <End Role="t_product_website" Type="Self.t_product_website" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_product_master">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="t_product_website">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_product_website_t_website_master">
+          <End Role="t_website_master" Type="Self.t_website_master" Multiplicity="1" />
+          <End Role="t_product_website" Type="Self.t_product_website" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_website_master">
+              <PropertyRef Name="website_id" />
+            </Principal>
+            <Dependent Role="t_product_website">
+              <PropertyRef Name="website_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_user_role_t_role_master">
+          <End Role="t_role_master" Type="Self.t_role_master" Multiplicity="1" />
+          <End Role="t_user_role" Type="Self.t_user_role" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_role_master">
+              <PropertyRef Name="role_id" />
+            </Principal>
+            <Dependent Role="t_user_role">
+              <PropertyRef Name="role_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_transfer_log_t_status_type_master">
+          <End Role="t_status_type_master" Type="Self.t_status_type_master" Multiplicity="1" />
+          <End Role="t_transfer_log" Type="Self.t_transfer_log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_status_type_master">
+              <PropertyRef Name="status_id" />
+            </Principal>
+            <Dependent Role="t_transfer_log">
+              <PropertyRef Name="status_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_user_role_t_user_master">
+          <End Role="t_user_master" Type="Self.t_user_master" Multiplicity="1" />
+          <End Role="t_user_role" Type="Self.t_user_role" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="t_user_master">
+              <PropertyRef Name="user_id" />
+            </Principal>
+            <Dependent Role="t_user_role">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_t_website_master_t_website_master">
+          <End Role="t_website_master" Type="Self.t_website_master" Multiplicity="1" />
+          <End Role="t_website_master1" Type="Self.t_website_master" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="t_website_master">
+              <PropertyRef Name="website_id" />
+            </Principal>
+            <Dependent Role="t_website_master1">
+              <PropertyRef Name="website_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="sherlockEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="t_asu_lead" EntityType="Self.t_asu_lead" />
+          <EntitySet Name="t_authentication_token" EntityType="Self.t_authentication_token" />
+          <EntitySet Name="t_buyer_master" EntityType="Self.t_buyer_master" />
+          <EntitySet Name="t_buyer_product" EntityType="Self.t_buyer_product" />
+          <EntitySet Name="t_buyer_product_criteria" EntityType="Self.t_buyer_product_criteria" />
+          <EntitySet Name="t_buyer_product_face" EntityType="Self.t_buyer_product_face" />
+          <EntitySet Name="t_common_lead_log" EntityType="Self.t_common_lead_log" />
+          <EntitySet Name="t_common_leads" EntityType="Self.t_common_leads" />
+          <EntitySet Name="t_debt_lead" EntityType="Self.t_debt_lead" />
+          <EntitySet Name="t_equityrelease_lead" EntityType="Self.t_equityrelease_lead" />
+          <EntitySet Name="t_ipi_lead" EntityType="Self.t_ipi_lead" />
+          <EntitySet Name="t_life_lead" EntityType="Self.t_life_lead" />
+          <EntitySet Name="t_loan_lead" EntityType="Self.t_loan_lead" />
+          <EntitySet Name="t_logbookloan_lead" EntityType="Self.t_logbookloan_lead" />
+          <EntitySet Name="t_mortgage_lead" EntityType="Self.t_mortgage_lead" />
+          <EntitySet Name="t_mortgage_lead_log" EntityType="Self.t_mortgage_lead_log" />
+          <EntitySet Name="t_pmi_lead" EntityType="Self.t_pmi_lead" />
+          <EntitySet Name="t_postcode" EntityType="Self.t_postcode" />
+          <EntitySet Name="t_ppi_lead" EntityType="Self.t_ppi_lead" />
+          <EntitySet Name="t_product_master" EntityType="Self.t_product_master" />
+          <EntitySet Name="t_product_website" EntityType="Self.t_product_website" />
+          <EntitySet Name="t_role_master" EntityType="Self.t_role_master" />
+          <EntitySet Name="t_sme_mi_lead" EntityType="Self.t_sme_mi_lead" />
+          <EntitySet Name="t_solar_lead" EntityType="Self.t_solar_lead" />
+          <EntitySet Name="t_stage_master" EntityType="Self.t_stage_master" />
+          <EntitySet Name="t_status_type_master" EntityType="Self.t_status_type_master" />
+          <EntitySet Name="t_transfer_log" EntityType="Self.t_transfer_log" />
+          <EntitySet Name="t_user_master" EntityType="Self.t_user_master" />
+          <EntitySet Name="t_user_role" EntityType="Self.t_user_role" />
+          <EntitySet Name="t_website_master" EntityType="Self.t_website_master" />
+          <EntitySet Name="t_hoax" EntityType="Self.t_hoax" />
+          <AssociationSet Name="FK_t_asu_lead_t_common_leads" Association="Self.FK_t_asu_lead_t_common_leads">
+            <End Role="t_common_leads" EntitySet="t_common_leads" />
+            <End Role="t_asu_lead" EntitySet="t_asu_lead" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_authentication_token_t_user_master" Association="Self.FK_t_authentication_token_t_user_master">
+            <End Role="t_user_master" EntitySet="t_user_master" />
+            <End Role="t_authentication_token" EntitySet="t_authentication_token" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_buyer_product_criteria_t_buyer_product" Association="Self.FK_t_buyer_product_criteria_t_buyer_product">
+            <End Role="t_buyer_master" EntitySet="t_buyer_master" />
+            <End Role="t_buyer_product_criteria" EntitySet="t_buyer_product_criteria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_buyer_product_t_buyer_master" Association="Self.FK_t_buyer_product_t_buyer_master">
+            <End Role="t_buyer_master" EntitySet="t_buyer_master" />
+            <End Role="t_buyer_product" EntitySet="t_buyer_product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_transfer_log_t_buyer_master" Association="Self.FK_t_transfer_log_t_buyer_master">
+            <End Role="t_buyer_master" EntitySet="t_buyer_master" />
+            <End Role="t_transfer_log" EntitySet="t_transfer_log" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_buyer_product_t_product_master" Association="Self.FK_t_buyer_product_t_product_master">
+            <End Role="t_product_master" EntitySet="t_product_master" />
+            <End Role="t_buyer_product" EntitySet="t_buyer_product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_buyer_product_criteria_t_product_master" Association="Self.FK_t_buyer_product_criteria_t_product_master">
+            <End Role="t_product_master" EntitySet="t_product_master" />
+            <End Role="t_buyer_product_criteria" EntitySet="t_buyer_product_criteria" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_buyer_product_face_t_product_master" Association="Self.FK_t_buyer_product_face_t_product_master">
+            <End Role="t_product_master" EntitySet="t_product_master" />
+            <End Role="t_buyer_product_face" EntitySet="t_buyer_product_face" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_common_lead_log_t_common_leads" Association="Self.FK_t_common_lead_log_t_common_leads">
+            <End Role="t_common_leads" EntitySet="t_common_leads" />
+            <End Role="t_common_lead_log" EntitySet="t_common_lead_log" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_common_lead_log_t_stage_master" Association="Self.FK_t_common_lead_log_t_stage_master">
+            <End Role="t_stage_master" EntitySet="t_stage_master" />
+            <End Role="t_common_lead_log" EntitySet="t_common_lead_log" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_common_leads_t_product_master" Association="Self.FK_t_common_leads_t_product_master">
+            <End Role="t_product_master" EntitySet="t_product_master" />
+            <End Role="t_common_leads" EntitySet="t_common_leads" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_debt_lead_t_common_leads" Association="Self.FK_t_debt_lead_t_common_leads">
+            <End Role="t_common_leads" EntitySet="t_common_leads" />
+            <End Role="t_debt_lead" EntitySet="t_debt_lead" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_equityrelease_lead_t_common_leads" Association="Self.FK_t_equityrelease_lead_t_common_leads">
+            <End Role="t_common_leads" EntitySet="t_common_leads" />
+            <End Role="t_equityrelease_lead" EntitySet="t_equityrelease_lead" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_ipi_lead_t_common_leads" Association="Self.FK_t_ipi_lead_t_common_leads">
+            <End Role="t_common_leads" EntitySet="t_common_leads" />
+            <End Role="t_ipi_lead" EntitySet="t_ipi_lead" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_life_lead_t_common_leads" Association="Self.FK_t_life_lead_t_common_leads">
+            <End Role="t_common_leads" EntitySet="t_common_leads" />
+            <End Role="t_life_lead" EntitySet="t_life_lead" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_loan_lead_t_common_leads" Association="Self.FK_t_loan_lead_t_common_leads">
+            <End Role="t_common_leads" EntitySet="t_common_leads" />
+            <End Role="t_loan_lead" EntitySet="t_loan_lead" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_logbookloan_lead_t_common_leads" Association="Self.FK_t_logbookloan_lead_t_common_leads">
+            <End Role="t_common_leads" EntitySet="t_common_leads" />
+            <End Role="t_logbookloan_lead" EntitySet="t_logbookloan_lead" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_mortgage_lead_t_common_leads" Association="Self.FK_t_mortgage_lead_t_common_leads">
+            <End Role="t_common_leads" EntitySet="t_common_leads" />
+            <End Role="t_mortgage_lead" EntitySet="t_mortgage_lead" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_pmi_lead_t_common_leads" Association="Self.FK_t_pmi_lead_t_common_leads">
+            <End Role="t_common_leads" EntitySet="t_common_leads" />
+            <End Role="t_pmi_lead" EntitySet="t_pmi_lead" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_ppi_lead_t_common_leads" Association="Self.FK_t_ppi_lead_t_common_leads">
+            <End Role="t_common_leads" EntitySet="t_common_leads" />
+            <End Role="t_ppi_lead" EntitySet="t_ppi_lead" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_product_website_t_common_leads" Association="Self.FK_t_product_website_t_common_leads">
+            <End Role="t_common_leads" EntitySet="t_common_leads" />
+            <End Role="t_product_website" EntitySet="t_product_website" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_sme_mi_lead_t_common_leads" Association="Self.FK_t_sme_mi_lead_t_common_leads">
+            <End Role="t_common_leads" EntitySet="t_common_leads" />
+            <End Role="t_sme_mi_lead" EntitySet="t_sme_mi_lead" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_solar_lead_t_common_leads" Association="Self.FK_t_solar_lead_t_common_leads">
+            <End Role="t_common_leads" EntitySet="t_common_leads" />
+            <End Role="t_solar_lead" EntitySet="t_solar_lead" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_transfer_log_t_common_leads" Association="Self.FK_t_transfer_log_t_common_leads">
+            <End Role="t_common_leads" EntitySet="t_common_leads" />
+            <End Role="t_transfer_log" EntitySet="t_transfer_log" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_1_t_stage_master" Association="Self.FK_Table_1_t_stage_master">
+            <End Role="t_stage_master" EntitySet="t_stage_master" />
+            <End Role="t_mortgage_lead_log" EntitySet="t_mortgage_lead_log" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_product_website_t_product_master" Association="Self.FK_t_product_website_t_product_master">
+            <End Role="t_product_master" EntitySet="t_product_master" />
+            <End Role="t_product_website" EntitySet="t_product_website" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_product_website_t_website_master" Association="Self.FK_t_product_website_t_website_master">
+            <End Role="t_website_master" EntitySet="t_website_master" />
+            <End Role="t_product_website" EntitySet="t_product_website" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_user_role_t_role_master" Association="Self.FK_t_user_role_t_role_master">
+            <End Role="t_role_master" EntitySet="t_role_master" />
+            <End Role="t_user_role" EntitySet="t_user_role" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_transfer_log_t_status_type_master" Association="Self.FK_t_transfer_log_t_status_type_master">
+            <End Role="t_status_type_master" EntitySet="t_status_type_master" />
+            <End Role="t_transfer_log" EntitySet="t_transfer_log" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_user_role_t_user_master" Association="Self.FK_t_user_role_t_user_master">
+            <End Role="t_user_master" EntitySet="t_user_master" />
+            <End Role="t_user_role" EntitySet="t_user_role" />
+          </AssociationSet>
+          <AssociationSet Name="FK_t_website_master_t_website_master" Association="Self.FK_t_website_master_t_website_master">
+            <End Role="t_website_master" EntitySet="t_website_master" />
+            <End Role="t_website_master1" EntitySet="t_website_master" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="sherlockModelStoreContainer" CdmEntityContainer="sherlockEntities">
+          <EntitySetMapping Name="t_asu_lead">
+            <EntityTypeMapping TypeName="sherlockModel.t_asu_lead">
+              <MappingFragment StoreEntitySet="t_asu_lead">
+                <ScalarProperty Name="asu_lead_id" ColumnName="asu_lead_id" />
+                <ScalarProperty Name="lead_id" ColumnName="lead_id" />
+                <ScalarProperty Name="date_of_birth" ColumnName="date_of_birth" />
+                <ScalarProperty Name="age" ColumnName="age" />
+                <ScalarProperty Name="employment_status" ColumnName="employment_status" />
+                <ScalarProperty Name="period" ColumnName="period" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="smoker" ColumnName="smoker" />
+                <ScalarProperty Name="cover_type" ColumnName="cover_type" />
+                <ScalarProperty Name="product_type" ColumnName="product_type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_authentication_token">
+            <EntityTypeMapping TypeName="sherlockModel.t_authentication_token">
+              <MappingFragment StoreEntitySet="t_authentication_token">
+                <ScalarProperty Name="token_id" ColumnName="token_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="auth_token" ColumnName="auth_token" />
+                <ScalarProperty Name="issues_on" ColumnName="issues_on" />
+                <ScalarProperty Name="expires_on" ColumnName="expires_on" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_buyer_master">
+            <EntityTypeMapping TypeName="sherlockModel.t_buyer_master">
+              <MappingFragment StoreEntitySet="t_buyer_master">
+                <ScalarProperty Name="buyer_id" ColumnName="buyer_id" />
+                <ScalarProperty Name="buyer_name" ColumnName="buyer_name" />
+                <ScalarProperty Name="buyer_address" ColumnName="buyer_address" />
+                <ScalarProperty Name="buyer_pincode" ColumnName="buyer_pincode" />
+                <ScalarProperty Name="buyer_poc_name" ColumnName="buyer_poc_name" />
+                <ScalarProperty Name="buyer_contact_number" ColumnName="buyer_contact_number" />
+                <ScalarProperty Name="buyer_poc_contact_number" ColumnName="buyer_poc_contact_number" />
+                <ScalarProperty Name="buyer_type" ColumnName="buyer_type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_buyer_product">
+            <EntityTypeMapping TypeName="sherlockModel.t_buyer_product">
+              <MappingFragment StoreEntitySet="t_buyer_product">
+                <ScalarProperty Name="buyer_product_id" ColumnName="buyer_product_id" />
+                <ScalarProperty Name="buyer_id" ColumnName="buyer_id" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="integration_type" ColumnName="integration_type" />
+                <ScalarProperty Name="buyer_quota" ColumnName="buyer_quota" />
+                <ScalarProperty Name="buyer_priority" ColumnName="buyer_priority" />
+                <ScalarProperty Name="start_date" ColumnName="start_date" />
+                <ScalarProperty Name="end_date" ColumnName="end_date" />
+                <ScalarProperty Name="buyer_status" ColumnName="buyer_status" />
+                <ScalarProperty Name="buyer_payment_mode" ColumnName="buyer_payment_mode" />
+                <ScalarProperty Name="prepaid_order_amount" ColumnName="prepaid_order_amount" />
+                <ScalarProperty Name="product_price" ColumnName="product_price" />
+                <ScalarProperty Name="remaining_amount" ColumnName="remaining_amount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_buyer_product_criteria">
+            <EntityTypeMapping TypeName="sherlockModel.t_buyer_product_criteria">
+              <MappingFragment StoreEntitySet="t_buyer_product_criteria">
+                <ScalarProperty Name="buyer_product_criteria_id" ColumnName="buyer_product_criteria_id" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="buyer_id" ColumnName="buyer_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_buyer_product_face">
+            <EntityTypeMapping TypeName="sherlockModel.t_buyer_product_face">
+              <MappingFragment StoreEntitySet="t_buyer_product_face">
+                <ScalarProperty Name="buyer_product_face_id" ColumnName="buyer_product_face_id" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="product_column_name" ColumnName="product_column_name" />
+                <ScalarProperty Name="expected_column_name" ColumnName="expected_column_name" />
+                <ScalarProperty Name="excluded" ColumnName="excluded" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_common_lead_log">
+            <EntityTypeMapping TypeName="sherlockModel.t_common_lead_log">
+              <MappingFragment StoreEntitySet="t_common_lead_log">
+                <ScalarProperty Name="log_id" ColumnName="log_id" />
+                <ScalarProperty Name="lead_id" ColumnName="lead_id" />
+                <ScalarProperty Name="stage_id" ColumnName="stage_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_common_leads">
+            <EntityTypeMapping TypeName="sherlockModel.t_common_leads">
+              <MappingFragment StoreEntitySet="t_common_leads">
+                <ScalarProperty Name="lead_id" ColumnName="lead_id" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="postcode" ColumnName="postcode" />
+                <ScalarProperty Name="Home_Mobile_Phone1" ColumnName="Home_Mobile_Phone1" />
+                <ScalarProperty Name="Home_Mobile_Phone2" ColumnName="Home_Mobile_Phone2" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="ip_address" ColumnName="ip_address" />
+                <ScalarProperty Name="source" ColumnName="source" />
+                <ScalarProperty Name="match_type" ColumnName="match_type" />
+                <ScalarProperty Name="keyword" ColumnName="keyword" />
+                <ScalarProperty Name="lead_status" ColumnName="lead_status" />
+                <ScalarProperty Name="cretaed_on" ColumnName="cretaed_on" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="updated_on" ColumnName="updated_on" />
+                <ScalarProperty Name="updtaed_by" ColumnName="updtaed_by" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_debt_lead">
+            <EntityTypeMapping TypeName="sherlockModel.t_debt_lead">
+              <MappingFragment StoreEntitySet="t_debt_lead">
+                <ScalarProperty Name="debt_lead_id" ColumnName="debt_lead_id" />
+                <ScalarProperty Name="lead_id" ColumnName="lead_id" />
+                <ScalarProperty Name="date_of_birth" ColumnName="date_of_birth" />
+                <ScalarProperty Name="age" ColumnName="age" />
+                <ScalarProperty Name="employement_status" ColumnName="employement_status" />
+                <ScalarProperty Name="resinedtial_location" ColumnName="resinedtial_location" />
+                <ScalarProperty Name="total_creditors" ColumnName="total_creditors" />
+                <ScalarProperty Name="debt_type" ColumnName="debt_type" />
+                <ScalarProperty Name="total_unsecured_debt" ColumnName="total_unsecured_debt" />
+                <ScalarProperty Name="monthly_repayment" ColumnName="monthly_repayment" />
+                <ScalarProperty Name="monthly_income" ColumnName="monthly_income" />
+                <ScalarProperty Name="monthly_disposable" ColumnName="monthly_disposable" />
+                <ScalarProperty Name="debt_residential_status_id" ColumnName="debt_residential_status_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_equityrelease_lead">
+            <EntityTypeMapping TypeName="sherlockModel.t_equityrelease_lead">
+              <MappingFragment StoreEntitySet="t_equityrelease_lead">
+                <ScalarProperty Name="equityrelease_lead_id" ColumnName="equityrelease_lead_id" />
+                <ScalarProperty Name="lead_id" ColumnName="lead_id" />
+                <ScalarProperty Name="date_of_birth" ColumnName="date_of_birth" />
+                <ScalarProperty Name="age" ColumnName="age" />
+                <ScalarProperty Name="property_value" ColumnName="property_value" />
+                <ScalarProperty Name="mortgage_balance" ColumnName="mortgage_balance" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_ipi_lead">
+            <EntityTypeMapping TypeName="sherlockModel.t_ipi_lead">
+              <MappingFragment StoreEntitySet="t_ipi_lead">
+                <ScalarProperty Name="ipi_lead_id" ColumnName="ipi_lead_id" />
+                <ScalarProperty Name="Lead_id" ColumnName="Lead_id" />
+                <ScalarProperty Name="date_of_birth" ColumnName="date_of_birth" />
+                <ScalarProperty Name="age" ColumnName="age" />
+                <ScalarProperty Name="employment_status" ColumnName="employment_status" />
+                <ScalarProperty Name="cover_type" ColumnName="cover_type" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="product_type" ColumnName="product_type" />
+                <ScalarProperty Name="period" ColumnName="period" />
+                <ScalarProperty Name="smoker" ColumnName="smoker" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_life_lead">
+            <EntityTypeMapping TypeName="sherlockModel.t_life_lead">
+              <MappingFragment StoreEntitySet="t_life_lead">
+                <ScalarProperty Name="life_lead_id" ColumnName="life_lead_id" />
+                <ScalarProperty Name="lead_id" ColumnName="lead_id" />
+                <ScalarProperty Name="date_of_birth" ColumnName="date_of_birth" />
+                <ScalarProperty Name="insurance_type_id" ColumnName="insurance_type_id" />
+                <ScalarProperty Name="premium_type_id" ColumnName="premium_type_id" />
+                <ScalarProperty Name="age" ColumnName="age" />
+                <ScalarProperty Name="period" ColumnName="period" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="smoker" ColumnName="smoker" />
+                <ScalarProperty Name="partner_first_name" ColumnName="partner_first_name" />
+                <ScalarProperty Name="partner_last_name" ColumnName="partner_last_name" />
+                <ScalarProperty Name="partner_smoker" ColumnName="partner_smoker" />
+                <ScalarProperty Name="partner_dob" ColumnName="partner_dob" />
+                <ScalarProperty Name="single_ownership" ColumnName="single_ownership" />
+                <ScalarProperty Name="critical_illness" ColumnName="critical_illness" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_loan_lead">
+            <EntityTypeMapping TypeName="sherlockModel.t_loan_lead">
+              <MappingFragment StoreEntitySet="t_loan_lead">
+                <ScalarProperty Name="loan_lead_id" ColumnName="loan_lead_id" />
+                <ScalarProperty Name="lead_id" ColumnName="lead_id" />
+                <ScalarProperty Name="date_of_birth" ColumnName="date_of_birth" />
+                <ScalarProperty Name="age" ColumnName="age" />
+                <ScalarProperty Name="employment_status" ColumnName="employment_status" />
+                <ScalarProperty Name="period" ColumnName="period" />
+                <ScalarProperty Name="property_value" ColumnName="property_value" />
+                <ScalarProperty Name="loan_value" ColumnName="loan_value" />
+                <ScalarProperty Name="loan_type" ColumnName="loan_type" />
+                <ScalarProperty Name="loan_purpose_id" ColumnName="loan_purpose_id" />
+                <ScalarProperty Name="home_owner" ColumnName="home_owner" />
+                <ScalarProperty Name="mortgage_balance" ColumnName="mortgage_balance" />
+                <ScalarProperty Name="query_string" ColumnName="query_string" />
+                <ScalarProperty Name="marital_status" ColumnName="marital_status" />
+                <ScalarProperty Name="country_of_residance" ColumnName="country_of_residance" />
+                <ScalarProperty Name="annual_income" ColumnName="annual_income" />
+                <ScalarProperty Name="credit_rating" ColumnName="credit_rating" />
+                <ScalarProperty Name="loan_guarantor" ColumnName="loan_guarantor" />
+                <ScalarProperty Name="been_in_debt" ColumnName="been_in_debt" />
+                <ScalarProperty Name="total_creditor" ColumnName="total_creditor" />
+                <ScalarProperty Name="address_start_date" ColumnName="address_start_date" />
+                <ScalarProperty Name="occupation" ColumnName="occupation" />
+                <ScalarProperty Name="employer_name" ColumnName="employer_name" />
+                <ScalarProperty Name="employer_since" ColumnName="employer_since" />
+                <ScalarProperty Name="previous_address" ColumnName="previous_address" />
+                <ScalarProperty Name="previous_city" ColumnName="previous_city" />
+                <ScalarProperty Name="previous_postcode" ColumnName="previous_postcode" />
+                <ScalarProperty Name="previous_address_since" ColumnName="previous_address_since" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_logbookloan_lead">
+            <EntityTypeMapping TypeName="sherlockModel.t_logbookloan_lead">
+              <MappingFragment StoreEntitySet="t_logbookloan_lead">
+                <ScalarProperty Name="logbookloan_lead_id" ColumnName="logbookloan_lead_id" />
+                <ScalarProperty Name="lead_id" ColumnName="lead_id" />
+                <ScalarProperty Name="date_of_birth" ColumnName="date_of_birth" />
+                <ScalarProperty Name="age" ColumnName="age" />
+                <ScalarProperty Name="country_of_residence" ColumnName="country_of_residence" />
+                <ScalarProperty Name="car_make" ColumnName="car_make" />
+                <ScalarProperty Name="car_model" ColumnName="car_model" />
+                <ScalarProperty Name="car_registration_year" ColumnName="car_registration_year" />
+                <ScalarProperty Name="number_plate" ColumnName="number_plate" />
+                <ScalarProperty Name="current_mileage" ColumnName="current_mileage" />
+                <ScalarProperty Name="clear_of_finance" ColumnName="clear_of_finance" />
+                <ScalarProperty Name="contact_time" ColumnName="contact_time" />
+                <ScalarProperty Name="loan_value" ColumnName="loan_value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_mortgage_lead">
+            <EntityTypeMapping TypeName="sherlockModel.t_mortgage_lead">
+              <MappingFragment StoreEntitySet="t_mortgage_lead">
+                <ScalarProperty Name="mortgage_lead_id" ColumnName="mortgage_lead_id" />
+                <ScalarProperty Name="lead_id" ColumnName="lead_id" />
+                <ScalarProperty Name="date_of_birth" ColumnName="date_of_birth" />
+                <ScalarProperty Name="age" ColumnName="age" />
+                <ScalarProperty Name="employment_status" ColumnName="employment_status" />
+                <ScalarProperty Name="period_term" ColumnName="period_term" />
+                <ScalarProperty Name="property_value" ColumnName="property_value" />
+                <ScalarProperty Name="loan_value" ColumnName="loan_value" />
+                <ScalarProperty Name="mortgage_type" ColumnName="mortgage_type" />
+                <ScalarProperty Name="current_debt" ColumnName="current_debt" />
+                <ScalarProperty Name="property_type" ColumnName="property_type" />
+                <ScalarProperty Name="property_location" ColumnName="property_location" />
+                <ScalarProperty Name="credit_history" ColumnName="credit_history" />
+                <ScalarProperty Name="annual_income" ColumnName="annual_income" />
+                <ScalarProperty Name="miss_any_loan" ColumnName="miss_any_loan" />
+                <ScalarProperty Name="had_bankruptcy" ColumnName="had_bankruptcy" />
+                <ScalarProperty Name="applied_iva" ColumnName="applied_iva" />
+                <ScalarProperty Name="had_ccj" ColumnName="had_ccj" />
+                <ScalarProperty Name="rate_id" ColumnName="rate_id" />
+                <ScalarProperty Name="repayment_id" ColumnName="repayment_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_mortgage_lead_log">
+            <EntityTypeMapping TypeName="sherlockModel.t_mortgage_lead_log">
+              <MappingFragment StoreEntitySet="t_mortgage_lead_log">
+                <ScalarProperty Name="mortgage_log_id" ColumnName="mortgage_log_id" />
+                <ScalarProperty Name="mortgage_lead_id" ColumnName="mortgage_lead_id" />
+                <ScalarProperty Name="stage_id" ColumnName="stage_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_pmi_lead">
+            <EntityTypeMapping TypeName="sherlockModel.t_pmi_lead">
+              <MappingFragment StoreEntitySet="t_pmi_lead">
+                <ScalarProperty Name="pmi_lead_id" ColumnName="pmi_lead_id" />
+                <ScalarProperty Name="lead_id" ColumnName="lead_id" />
+                <ScalarProperty Name="date_of_birth" ColumnName="date_of_birth" />
+                <ScalarProperty Name="age" ColumnName="age" />
+                <ScalarProperty Name="policy_member" ColumnName="policy_member" />
+                <ScalarProperty Name="existing_policy" ColumnName="existing_policy" />
+                <ScalarProperty Name="cover_type" ColumnName="cover_type" />
+                <ScalarProperty Name="smoker" ColumnName="smoker" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_postcode">
+            <EntityTypeMapping TypeName="sherlockModel.t_postcode">
+              <MappingFragment StoreEntitySet="t_postcode">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+                <ScalarProperty Name="mod_postcode" ColumnName="mod_postcode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_ppi_lead">
+            <EntityTypeMapping TypeName="sherlockModel.t_ppi_lead">
+              <MappingFragment StoreEntitySet="t_ppi_lead">
+                <ScalarProperty Name="ppi_lead_id" ColumnName="ppi_lead_id" />
+                <ScalarProperty Name="lead_id" ColumnName="lead_id" />
+                <ScalarProperty Name="date_of_birth" ColumnName="date_of_birth" />
+                <ScalarProperty Name="employement_status" ColumnName="employement_status" />
+                <ScalarProperty Name="loan_status" ColumnName="loan_status" />
+                <ScalarProperty Name="monthly_repayment" ColumnName="monthly_repayment" />
+                <ScalarProperty Name="loan_amount" ColumnName="loan_amount" />
+                <ScalarProperty Name="loan_duration" ColumnName="loan_duration" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_product_master">
+            <EntityTypeMapping TypeName="sherlockModel.t_product_master">
+              <MappingFragment StoreEntitySet="t_product_master">
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="product_name" ColumnName="product_name" />
+                <ScalarProperty Name="parent_product_id" ColumnName="parent_product_id" />
+                <ScalarProperty Name="product_deleted" ColumnName="product_deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_product_website">
+            <EntityTypeMapping TypeName="sherlockModel.t_product_website">
+              <MappingFragment StoreEntitySet="t_product_website">
+                <ScalarProperty Name="product_website_id" ColumnName="product_website_id" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="website_id" ColumnName="website_id" />
+                <ScalarProperty Name="lead_id" ColumnName="lead_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_role_master">
+            <EntityTypeMapping TypeName="sherlockModel.t_role_master">
+              <MappingFragment StoreEntitySet="t_role_master">
+                <ScalarProperty Name="role_id" ColumnName="role_id" />
+                <ScalarProperty Name="role_name" ColumnName="role_name" />
+                <ScalarProperty Name="role_desc" ColumnName="role_desc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_sme_mi_lead">
+            <EntityTypeMapping TypeName="sherlockModel.t_sme_mi_lead">
+              <MappingFragment StoreEntitySet="t_sme_mi_lead">
+                <ScalarProperty Name="sme_mi_lead_id" ColumnName="sme_mi_lead_id" />
+                <ScalarProperty Name="lead_id" ColumnName="lead_id" />
+                <ScalarProperty Name="company_name" ColumnName="company_name" />
+                <ScalarProperty Name="no_of_employee" ColumnName="no_of_employee" />
+                <ScalarProperty Name="existing_policy" ColumnName="existing_policy" />
+                <ScalarProperty Name="cover_type" ColumnName="cover_type" />
+                <ScalarProperty Name="company_address" ColumnName="company_address" />
+                <ScalarProperty Name="company_city" ColumnName="company_city" />
+                <ScalarProperty Name="company_postcode" ColumnName="company_postcode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_solar_lead">
+            <EntityTypeMapping TypeName="sherlockModel.t_solar_lead">
+              <MappingFragment StoreEntitySet="t_solar_lead">
+                <ScalarProperty Name="solar_lead_id" ColumnName="solar_lead_id" />
+                <ScalarProperty Name="lead_id" ColumnName="lead_id" />
+                <ScalarProperty Name="property_type" ColumnName="property_type" />
+                <ScalarProperty Name="home_owner" ColumnName="home_owner" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_stage_master">
+            <EntityTypeMapping TypeName="sherlockModel.t_stage_master">
+              <MappingFragment StoreEntitySet="t_stage_master">
+                <ScalarProperty Name="stage_id" ColumnName="stage_id" />
+                <ScalarProperty Name="stage" ColumnName="stage" />
+                <ScalarProperty Name="stage_detail" ColumnName="stage_detail" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_status_type_master">
+            <EntityTypeMapping TypeName="sherlockModel.t_status_type_master">
+              <MappingFragment StoreEntitySet="t_status_type_master">
+                <ScalarProperty Name="status_id" ColumnName="status_id" />
+                <ScalarProperty Name="status_name" ColumnName="status_name" />
+                <ScalarProperty Name="status_desc" ColumnName="status_desc" />
+                <ScalarProperty Name="creation_datetime" ColumnName="creation_datetime" />
+                <ScalarProperty Name="last_updated_datetime" ColumnName="last_updated_datetime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_transfer_log">
+            <EntityTypeMapping TypeName="sherlockModel.t_transfer_log">
+              <MappingFragment StoreEntitySet="t_transfer_log">
+                <ScalarProperty Name="transfer_log_id" ColumnName="transfer_log_id" />
+                <ScalarProperty Name="generated_datetime" ColumnName="generated_datetime" />
+                <ScalarProperty Name="transfer_datetime" ColumnName="transfer_datetime" />
+                <ScalarProperty Name="buyer_id" ColumnName="buyer_id" />
+                <ScalarProperty Name="lead_id" ColumnName="lead_id" />
+                <ScalarProperty Name="buyer_return_lead_id" ColumnName="buyer_return_lead_id" />
+                <ScalarProperty Name="buyer_end_status" ColumnName="buyer_end_status" />
+                <ScalarProperty Name="status_id" ColumnName="status_id" />
+                <ScalarProperty Name="msg_returned" ColumnName="msg_returned" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_user_master">
+            <EntityTypeMapping TypeName="sherlockModel.t_user_master">
+              <MappingFragment StoreEntitySet="t_user_master">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="user_name" ColumnName="user_name" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="user_password" ColumnName="user_password" />
+                <ScalarProperty Name="last_updated_time" ColumnName="last_updated_time" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_user_role">
+            <EntityTypeMapping TypeName="sherlockModel.t_user_role">
+              <MappingFragment StoreEntitySet="t_user_role">
+                <ScalarProperty Name="user_role" ColumnName="user_role" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="role_id" ColumnName="role_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_website_master">
+            <EntityTypeMapping TypeName="sherlockModel.t_website_master">
+              <MappingFragment StoreEntitySet="t_website_master">
+                <ScalarProperty Name="website_id" ColumnName="website_id" />
+                <ScalarProperty Name="website_address" ColumnName="website_address" />
+                <ScalarProperty Name="website_status" ColumnName="website_status" />
+                <ScalarProperty Name="website_name" ColumnName="website_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="t_hoax">
+            <EntityTypeMapping TypeName="sherlockModel.t_hoax">
+              <MappingFragment StoreEntitySet="t_hoax">
+                <ScalarProperty Name="Hoax_Name" ColumnName="Hoax_Name" />
+                <ScalarProperty Name="Hoax_City" ColumnName="Hoax_City" />
+                <ScalarProperty Name="Hoax_Email" ColumnName="Hoax_Email" />
+                <ScalarProperty Name="hoax_Contactno" ColumnName="hoax_Contactno" />
+                <ScalarProperty Name="Hoax_Postcode" ColumnName="Hoax_Postcode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
